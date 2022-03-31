@@ -24,7 +24,6 @@ def convert_to_df(response):
     else:
         return None
 
-
 def Grid(df, key, h=750):
     gd = GridOptionsBuilder.from_dataframe(df)
     gd.configure_pagination(enabled=True)
@@ -54,13 +53,17 @@ def get_upwork():
     response = requests.request("POST", findAll_url, headers=headers, data=Payload)
     return convert_to_df(response)
 
-
 @st.cache
 def get_bank():
     findAll_url = "https://data.mongodb-api.com/app/data-wqlxh/endpoint/data/beta/action/find"
     Payload = json.dumps({"collection": "bankStatement", "database": "Modev","dataSource": "BiCluster", "filter": {}})
     response = requests.request("POST", findAll_url, headers=headers, data=Payload)
     return convert_to_df(response)
+
+def date_formatter(date_var):
+    dt_start = date_var.strftime("%m/%d/%Y")
+    dt_str = datetime.strptime(dt_start, "%m/%d/%Y")
+    return dt_str
 
 bills = get_bills()
 upWork = get_upwork()
@@ -124,17 +127,17 @@ if report == 'Cash Flow':
     c4, c5, c6 = container_0.columns(3)
     start = c4.date_input("Reporting period", today) 
     end = c5.date_input('to', today)
-    dt_start = start.strftime("%m/%d/%Y")
-    start_dt = datetime.strptime(dt_start, "%m/%d/%Y")
-    dt_end = end.strftime("%m/%d/%Y")
-    end_dt = datetime.strptime(dt_end, "%m/%d/%Y")
+    # dt_start = start.strftime("%m/%d/%Y")
+    # start_dt = datetime.strptime(dt_start, "%m/%d/%Y")
+    # dt_end = end.strftime("%m/%d/%Y")
+    # end_dt = datetime.strptime(dt_end, "%m/%d/%Y")
     c6.selectbox('Project', options=projects)
     bank['Date'] = pd.to_datetime(bank['Date'])
 
     # bank['Date'] = bank['Date'].map(lambda date: datetime.strptime(date, '%m/%d/%Y').date())
     # bank = bank[(bank['Date']>= period) and (bank['Date']>= end)]
     # if (period == today) & (end == today):
-    bank = bank[(bank["Date"]>=start_dt) & (bank["Date"]<=end_dt)]
+    bank = bank[(bank["Date"]>=date_formatter(start)) & (bank["Date"]<=date_formatter(end))]
     income = "{:,.2f}".format(bank[bank['Amount']>0].Amount.sum())
     withdrawals = "{:,.2f}".format(bank[bank['Amount']<0].Amount.sum())
 # Cash Flow Table Data
