@@ -1,0 +1,15 @@
+Vendor,Invoice #,Date,Due Date,Aging,Approval Status,Payment Status,Open Balance
+"DLA Piper, LLP",4113800,07/28/21,08/27/21,228,Approving,Unpaid,285.30
+"DLA Piper, LLP",4140423,08/01/21,08/31/21,224,Approving,Unpaid,5042.70
+"DLA Piper, LLP",4160860,08/30/21,09/29/21,195,Assigned,Unpaid,1901.47
+"DLA Piper, LLP",4178615,10/06/21,11/05/21,158,Assigned,Unpaid,3513.60
+Fazefwd Llc,2021-54,10/13/21,11/12/21,151,Denied,Unpaid,9000.00
+"DLA Piper, LLP",4198404,11/11/21,12/11/21,122,Assigned,Unpaid,306.35
+Fusion Corporate Partners (UK) Ltd,L1650,11/11/21,12/11/21,122,Assigned,Unpaid,9000.00
+Freeman,510631-M002,12/15/21,01/14/22,88,Assigned,Unpaid,11394.33
+Pete Erickson,2012021,12/20/21,12/20/21,113,Unassigned,Unpaid,25000.00
+Adam Rarey,01/17/2022,01/17/22,02/01/22,70,Denied,Unpaid,2500.00
+"DLA Piper, LLP",4259231,03/17/22,04/16/22,-4,Assigned,Unpaid,6894.90
+Hammerton Barca,1049,04/01/22,04/16/22,-4,Approved,Scheduled,4800.00
+Howard Associates,VOICE22-04,04/01/22,04/30/22,-18,Assigned,Unpaid,4500.00
+Grand Total,,,,,,,84138.65

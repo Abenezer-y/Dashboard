@@ -1,0 +1,7 @@
+,_id,Date,Type,No.,Customer,Memo,Due date,Balance,Total,Status
+0,624f39bbe0ec2e78c7f8aa24,2022-02-28,Invoice,2367,Willow Tree Apps,0,02/28/2022,0,40000,paid
+1,624f39bbe0ec2e78c7f8aa25,2022-02-25,Invoice,2366,Voicify,0,02/25/2022,30000,30000,paid
+2,624f39bbe0ec2e78c7f8aa27,2022-02-01,Invoice,2365,Veritone,0,02/01/2022,0,125000,paid
+3,624f39bbe0ec2e78c7f8aa22,2022-03-10,Invoice,2368,Gridspace,0,03/10/2022,0,40000,paid
+4,624f39bbe0ec2e78c7f8aa1b,2022-03-30,Invoice,2372,Deepgram,0,03/30/2022,0,25000,paid
+5,624f39bbe0ec2e78c7f8aa1f,2022-03-15,Invoice,2370,Symbl.ai,0,03/15/2022,0,15000,paid

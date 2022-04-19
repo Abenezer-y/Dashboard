@@ -1,224 +1,344 @@
+######
+from lib2to3.pgen2.token import GREATER
 import streamlit as st
 import pandas as pd 
-from datetime import datetime
+import datetime
 import requests
 import json
-from st_aggrid import AgGrid, DataReturnMode, GridUpdateMode, GridOptionsBuilder
+from st_aggrid import AgGrid, DataReturnMode, GridUpdateMode, GridOptionsBuilder, JsCode
 import plotly.graph_objects as go
+import time
+import plotly.express as px
+from data_processing import format, week_range, convert_to_df, Grid, get_data, date_formatter, budget, budget_w3, budget_v22, budget_GnA, get_bills, Account_Balance
+from data_processing import cashflow, get_upWork, get_credit, get_bank, get_data, get_sales, get_budget, get_accounts, get_loan, get_receivables, get_payables, get_sponsorship, get_payroll, get_general, get_voice21, get_voice22, get_voiceNA, get_w3
+#####################################
 
+#####################################
+########### Data Constants ##########
+BILLS = get_bills()
+UpWORK = get_upWork()
+CREDITS = get_credit()
+BANK = get_bank()
+SALES = get_sales()
 
-headers = {'Content-Type': 'application/json', 'Access-Control-Request-Headers': '*','api-key': 'quuKmslQouhgHNNdtya30WaRxNhXxVcvD5WJlJ0vGmsa9Z9ZccSV4eKast0OjAHb'}
+# BUDGET = get_budget()
 
-def convert_to_df(response):
-    if response.ok:
-        response_json = response.json()
-        colomun = [_ for _ in response_json['documents'][0].keys()]
-        df_data = {}
-        for col in colomun:
-            df_data[col] = []
-        for doc in response_json['documents']:
-            for col in colomun:
-                df_data[col].append(doc[col])
-        df = pd.DataFrame(df_data)
-        return df
+# ACCOUNTS = get_accounts()
+LOAN = get_loan()
+# RECEIVABLES = get_receivables()
+PAYABLES = get_payables()
+SPONSORSHIP = get_sponsorship()
+# PAYROLL = get_payroll()
+
+GENERAL = get_general()
+VOICE21 = get_voice21()
+VOICE22 = get_voice22()
+VOICE_NA = get_voiceNA()
+W3 = get_w3()
+#####################################
+#####################################
+
+#####################################
+#### Functions: Data Processing #####
+
+def cashflow(date_1=None, date_2 = None):
+    BANK['Date'] = pd.to_datetime(BANK['Date'])
+    SALES['Date'] = pd.to_datetime(SALES['Date'])
+    if (date_1  is None and date_2  is None):
+        bank = BANK
+        balance = bank['Amount'].sum()
     else:
-        return None
+        bank = BANK[BANK['Date']>=date_1]
+        bank = bank[bank['Date']<=date_2]
+        balance = BANK[BANK['Date']<=date_2]['Amount'].sum()
 
-def Grid(df, key, h=750):
-    gd = GridOptionsBuilder.from_dataframe(df)
-    gd.configure_pagination(enabled=True)
-    gd.configure_default_column(groupable=True)
-    gd.configure_selection('single')
-    grid_option =gd.build()
-    grid = AgGrid(df,  key=key,
-                    gridOptions=grid_option,
-                    update_mode=GridUpdateMode.MODEL_CHANGED,
-                    fit_columns_on_grid_load=True, 
-                    theme="material", 
-                    height=h, 
-                    width='100%')
-    return grid
-
-@st.cache
-def get_bills():
-    findAll_url = "https://data.mongodb-api.com/app/data-wqlxh/endpoint/data/beta/action/find"
-    Payload = json.dumps({"collection": "bills", "database": "Modev","dataSource": "BiCluster", "filter": {}})
-    response = requests.request("POST", findAll_url, headers=headers, data=Payload)
-    return convert_to_df(response)
-
-@st.cache
-def get_upwork():
-    findAll_url = "https://data.mongodb-api.com/app/data-wqlxh/endpoint/data/beta/action/find"
-    Payload = json.dumps({"collection": "upwork", "database": "Modev","dataSource": "BiCluster", "filter": {}})
-    response = requests.request("POST", findAll_url, headers=headers, data=Payload)
-    return convert_to_df(response)
-
-@st.cache
-def get_bank():
-    findAll_url = "https://data.mongodb-api.com/app/data-wqlxh/endpoint/data/beta/action/find"
-    Payload = json.dumps({"collection": "bankStatement", "database": "Modev","dataSource": "BiCluster", "filter": {}})
-    response = requests.request("POST", findAll_url, headers=headers, data=Payload)
-    return convert_to_df(response)
-
-def date_formatter(date_var):
-    dt_start = date_var.strftime("%m/%d/%Y")
-    dt_str = datetime.strptime(dt_start, "%m/%d/%Y")
-    return dt_str
-
-bills = get_bills()
-upWork = get_upwork()
-bank = get_bank()
+    ob =BANK[BANK['Description']=='Opening Balance']['Amount'].values[0]
+    overdue = SALES[SALES['Status']=='overdue']['Total'].sum()
+    open_invoice = SALES[SALES['Status']=='open']['Total'].sum()
+    excpected_inflow = overdue + open_invoice
+    income = bank[bank['Amount']>0.0]['Amount'].sum()
+    expense = bank[bank['Amount']<0.0]['Amount'].sum()
+    
+    data_dict = {}
+    data_dict['Description'] = ["Opening Balance", "Cash In", "Cash Out", "Open Invoice", "Overdue Invoices", "Bank Balance", "Estimated Revenue", "Estimated Payments", "Estimated Bank Balance"]
+    data_dict['Balance'] = ['{:,.2f}'.format(ob), '{:,.2f}'.format(income), '{:,.2f}'.format(expense), '{:,.2f}'.format(excpected_inflow), '{:,.2f}'.format(overdue), '{:,.2f}'.format(balance), 0.0, 0.0, 0.0]
+    cash_df = pd.DataFrame(data_dict)
+    return cash_df
 
 
+def Account_Balance(df):
+    df['Amount'] =  df['Amount'].astype(str)
+    df['Amount'] = df['Amount'].map(lambda Amount: float(Amount.replace(",", "")))
+    accounts = df['Account'].unique()
+    dict_df = {'Account': [], "Balance": []}
+    for acc in accounts:
+        balance = round(df[df['Account']==acc]['Amount'].sum(), 2)
+        dict_df['Account'].append(acc) 
+        dict_df['Balance'].append(balance) 
+    acc_df = pd.DataFrame(dict_df)
+    return acc_df
+#####################################
+##### Functions: Data Submition #####
+def submit_income(doc):
+    insertOne_url = "https://data.mongodb-api.com/app/data-wqlxh/endpoint/data/beta/action/insertOne"
+    Payload = json.dumps({"collection": "income", "database": "Modev","dataSource": "BiCluster", "document": doc})
+    response = requests.request("POST", insertOne_url, headers=headers, data=Payload)
+    return response
+def submit_receivable(doc):
+    insertOne_url = "https://data.mongodb-api.com/app/data-wqlxh/endpoint/data/beta/action/insertOne"
+    Payload = json.dumps({"collection": "receivables", "database": "Modev","dataSource": "BiCluster", "document": doc})
+    response = requests.request("POST", insertOne_url, headers=headers, data=Payload)
+    return response
+#####################################
+#####################################
 
-# df = pd.read_json(data)
-# Default values 
-today = datetime.today()
-opening_balance = 148136.99
-toDay = today.strftime('%m/%d/%Y')
-
-# Selector options 
-reports = ["Cash Flow", "Budget Reconciliation", "Loan Manager"]
-periods = ["Current Week", "Current Month", "Year to Date"]
+#####################################
+######## Options Constants ##########
+reports = ["Cash Flow", "Budget Reconciliation", "Expenses", "Classes", "Accounts"]
+periods = ["Current Week", "Previous Week", "Year to Date"]
 projects = ["All", "Voice Summit 2022", "W3", "G&A"]
-
-# imported files path
-credit_card = './card.csv'
-bill = './bill.csv'
-# upWork = './upWork.csv'
-bank = pd.read_csv('./bank_clean.csv')
-budget_path = './budget.xlsx'
-
-# Title bar Data
-income = "{:,.2f}".format(bank[bank['Amount']>0].Amount.sum())
-withdrawals = "{:,.2f}".format(bank[bank['Amount']<0].Amount.sum())
-bal_calc = opening_balance + bank[bank['Amount']>0].Amount.sum() + bank[bank['Amount']<0].Amount.sum()
-balance = "{:,.2f}".format(bal_calc)
+indices = [1, 2, 3, 4, 5]
+income = {}
+receivable = {}
+jan_1 = datetime.datetime(2022,1,1,0,0,0)
+today = datetime.datetime.today()
+#####################################
+#####################################
 
 
+###########################################################################
+################################### UI ####################################
 
-data = {"Line Item":[], "Budget": [], "Account": []}
-
-
-
-
-
-
-# UI Section
+#####################################
+############## SIDEBAR ##############
 sideBar = st.sidebar
 sideBar.title("Control Panel")
-
 report = sideBar.selectbox('Reports', options=reports)
-container_0 = st.container()
+sideBar.header("Filters")
+project = sideBar.selectbox('Projects', options=projects)
+period = sideBar.selectbox('Period', options=periods)
+#####################################
+#####################################
+CONTAINER = st.container()
 
 
-
+#####################################
+############# CASHFLOW ##############
 if report == 'Cash Flow':
-    container_0.title("Modev Cash Flow Dashboard Draft")
-    c1, c2, c3, = container_0.columns(3)
-    with c1:
-        st.metric(label="Bank Balance", value=balance)
-    with c2:
-        st.metric(label="Cash In (YTD)", value=income)
-    with c3:
-        st.metric(label="Cash Out (YTD)", value=withdrawals)
+    CONTAINER.title("MODEV Cash Flow Dashboard Draft")
+    CONTAINER.header('Cash Flow Summary')
 
-    container_0.header('Cash Flow Summary')
-    c4, c5, c6 = container_0.columns(3)
-    start = c4.date_input("Reporting period", today) 
-    end = c5.date_input('to', today)
-    # dt_start = start.strftime("%m/%d/%Y")
-    # start_dt = datetime.strptime(dt_start, "%m/%d/%Y")
-    # dt_end = end.strftime("%m/%d/%Y")
-    # end_dt = datetime.strptime(dt_end, "%m/%d/%Y")
-    c6.selectbox('Project', options=projects)
-    bank['Date'] = pd.to_datetime(bank['Date'])
+    if period == 'Current Week':
+        days = week_range(1)
+        cash = cashflow(days[0], days[1])
+        Cash = Grid(cash.iloc[indices], key='key_872w1', h=400)
 
-    # bank['Date'] = bank['Date'].map(lambda date: datetime.strptime(date, '%m/%d/%Y').date())
-    # bank = bank[(bank['Date']>= period) and (bank['Date']>= end)]
-    # if (period == today) & (end == today):
-    bank = bank[(bank["Date"]>=date_formatter(start)) & (bank["Date"]<=date_formatter(end))]
-    income = "{:,.2f}".format(bank[bank['Amount']>0].Amount.sum())
-    withdrawals = "{:,.2f}".format(bank[bank['Amount']<0].Amount.sum())
-# Cash Flow Table Data
-    cash_flow = {"Description": [f'Cash In: For the period {dt_start} to {dt_end}'  , 
-                                          f'Cash Out: For the period {dt_start} to {dt_end}', 
-                                          'Open Invoices', 
-                                          'Overdue Invoices', 
-                                          'EST. Cash out until end of month', 
-                                          f'Bank Balance {toDay}'], 
-                        "Balance": [income, 
-                                    withdrawals, 
-                                    '0', 
-                                    '0', 
-                                    '0', 
-                                   balance]}
-    
-    cf_df = pd.DataFrame(cash_flow)
-    Grid(cf_df, key='key_0', h=400)
-    fig = go.Figure()
-    fig.add_trace(go.Scatter(x=[_ for _ in bank[bank['Amount']>0]['Date']], y=[_ for _ in bank[bank['Amount']>0]['Amount']], fill='tozeroy')) # fill down to xaxis
-    fig.add_trace(go.Scatter(x=[_ for _ in bank[bank['Amount']<0]['Date']], y=[_ for _ in bank[bank['Amount']<0]['Amount']], fill='tozeroy')) # fill to trace0 y
-    st.plotly_chart(fig, use_container_width=True)
-    
-    # fig.show()
-    # st.table(cash_flow["Data"])
-    # tonexty
+    elif period == 'Previous Week':
+        days = week_range(2)
+        cash = cashflow(days[0], days[1])
+        Cash = Grid(cash.iloc[indices], key='key_87991',  h=400)
 
+    elif period == 'Year to Date':
+        cash = cashflow(jan_1, today)
+        Cash = Grid(cash, key='key_87dd991',  h=550)
+#####################################
+#####################################
+
+#####################################
+############## BUDGET ###############
 
 elif report == "Budget Reconciliation":
-    budget_df = pd.read_excel(budget_path, sheet_name="Modev Budget")
-    revenue = budget_df[budget_df['Account Type'] == "Revenue"][['Total Budget']].sum()
-    expense = budget_df[budget_df['Account Type'] == "Expense"][['Total Budget']].sum()
-    diff = revenue["Total Budget"].sum() - expense["Total Budget"].sum()
-    container_0.title("Modev Annual Budget")
-    c7, c8, c9, = container_0.columns(3)
-    with c7:
-        st.metric(label="Revenue", value=revenue)
-    with c8:
-        st.metric(label="Costs", value=expense)
-    with c9:
-        st.metric(label="Earning", value=str(diff))
+    file_path_budget = 'E:/Users/abega/Documents/Hammerton Barca/MODEV/MODEV Finance/cash flow dashboard/Data/Budget/budget.xlsx'
+    budget_sheet = pd.read_excel(file_path_budget, sheet_name=['All', 'W3', 'Voice22', 'GnA'])
+    CONTAINER.title("Budget Management")
+    if project == "All":
+        with CONTAINER:
+            df = budget_sheet['All']
+            df['Q1 TOTAL'] = df['Q1 TOTAL'].map(lambda Amount: '{:,.2f}'.format(Amount))
+            df['Q2 TOTAL'] = df['Q2 TOTAL'].map(lambda Amount: '{:,.2f}'.format(Amount))
+            df['Q3 TOTAL'] = df['Q3 TOTAL'].map(lambda Amount: '{:,.2f}'.format(Amount))
+            df['Q4 TOTAL'] = df['Q4 TOTAL'].map(lambda Amount: '{:,.2f}'.format(Amount))
+            df['Yearly'] = df['Yearly'].map(lambda Amount: '{:,.2f}'.format(Amount))
+            All = Grid(budget_sheet['All'], key='All', h=400)
+            # st.info('Total Balance:  {:,.2f}'.format(bills['data']['Amount'].sum()))
+        # if st.button('Export CSV'):
+        #     bills['data'].to_csv("export.csv") 
+    elif project == "Voice Summit 2022":
+        with CONTAINER:
 
-    container_0.header('Budget Plan')
+            sp_v22 = SPONSORSHIP[SPONSORSHIP['Class'] == 'Voice Summit 2022']
+            sp_v22['Amount'] = pd.to_numeric(sp_v22['Amount'])
+            exp_acc = Account_Balance(VOICE22)
+            budget_sheet['Voice22']['Q1 Actual'] = [sp_v22['Amount'].sum(), exp_acc['Balance'].sum()]
+            budget_sheet['Voice22']['YTD Actual'] = [sp_v22['Amount'].sum(), exp_acc['Balance'].sum()]
 
-    c10, c11 = container_0.columns(2)
-    budget = c10.selectbox('Projects',options=['Company', 'Voice Summit 2022', 'W3'])
-    bug_per = c11.selectbox('Period',options=['Annual', 'Quarter 1', 'Quarter 2', 'Quarter 3', 'Quarter 4'])
+            budget_sheet['Voice22']['Q1 Delta'] = [(budget_sheet['Voice22']['Q1 TOTAL'].values[0] - budget_sheet['Voice22']['Q1 Actual'].values[0]), (budget_sheet['Voice22']['Q1 TOTAL'].values[1] - budget_sheet['Voice22']['Q1 Actual'].values[1])]
+            budget_sheet['Voice22']['Yearly Delta'] = [(budget_sheet['Voice22']['Yearly'].values[0] - budget_sheet['Voice22']['YTD Actual'].values[0]), (budget_sheet['Voice22']['Yearly'].values[1] - budget_sheet['Voice22']['YTD Actual'].values[1])]
+            
 
-    budget_df['Total Budget'] = budget_df['Total Budget'].map(lambda Amount: "$ {:,.2f}".format(Amount))
-    AgGrid(budget_df[['Project Class', 'Description', 'Q1', 'Q2', 'Q3', 'Q4', 'Total Budget']], editable=True, fit_columns_on_grid_load=True)
-  
+            col = ['Account', 'Q1 TOTAL', 'Q1 Actual', 'Q1 Delta', 'Q2 TOTAL', 'Q3 TOTAL', 'Q4 TOTAL', 'Yearly', 'YTD Actual', 'Yearly Delta']
+            df = budget_sheet['Voice22'][col]
+            df['Q1 TOTAL'] = df['Q1 TOTAL'].map(lambda Amount: '{:,.2f}'.format(Amount))
+            df['Q1 Actual'] = df['Q1 Actual'].map(lambda Amount: '{:,.2f}'.format(Amount))
+            df['Q1 Delta'] = df['Q1 Delta'].map(lambda Amount: '{:,.2f}'.format(Amount))
+            df['Q2 TOTAL'] = df['Q2 TOTAL'].map(lambda Amount: '{:,.2f}'.format(Amount))
+            df['Q3 TOTAL'] = df['Q3 TOTAL'].map(lambda Amount: '{:,.2f}'.format(Amount))
+            df['Q4 TOTAL'] = df['Q4 TOTAL'].map(lambda Amount: '{:,.2f}'.format(Amount))
+            df['Yearly'] = df['Yearly'].map(lambda Amount: '{:,.2f}'.format(Amount))
+            df['YTD Actual'] = df['YTD Actual'].map(lambda Amount: '{:,.2f}'.format(Amount))
+            df['Yearly Delta'] = df['Yearly Delta'].map(lambda Amount: '{:,.2f}'.format(Amount))
 
+            # df_pivot = budget_sheet['Voice22'].pivot(columns='Account', values='Yearly')
+            # fig = px.line(df_pivot, x="Sponsorship", y="COGS", title='Life expectancy in Canada')
+            # CONTAINER.plotly_chart(fig, use_container_width=True, sharing="streamlit")
+            Voice22 = Grid(df, key='Voice22', h=300)
+            
+            c1, c2 = CONTAINER.columns(2)
+            with c1:
+                st.header("Expense Accounts")
+                V22_Exp = Grid(Account_Balance(VOICE22), key='V22_Exp', h=400)
+                st.info('Total Balance:  {:,.2f}'.format(V22_Exp['data']['Balance'].sum()))
+            with c2:
+                st.header("Sponsorships")
+                V22_SP = Grid(sp_v22[['Customer', 'Amount']], key='V22_SP', h=400)
+                st.info('Total Balance:  {:,.2f}'.format(V22_SP['data']['Amount'].sum()))
 
-elif report == "Loan Manager":
-    container_0.title("Modev Annual Budget")
-    container_0.header('Budget Plan')
-    file = container_0.selectbox('Files',options=['Bills', 'Upwork', 'Bank Statement', 'Credit'])
+    elif project == "W3":
+        sp_W3 = SPONSORSHIP[SPONSORSHIP['Class'] == 'W3']
+        sp_W3['Amount'] = pd.to_numeric(sp_W3['Amount'])
+        exp_W3 = Account_Balance(W3)
+        budget_sheet['W3']['Q1 Actual'] = [sp_W3['Amount'].sum(), exp_W3['Balance'].sum()]
+        budget_sheet['W3']['YTD Actual'] = [sp_W3['Amount'].sum(), exp_W3['Balance'].sum()]
+        col = ['Account', 'Q1 TOTAL', 'Q1 Actual', 'Q2 TOTAL', 'Q3 TOTAL', 'Q4 TOTAL', 'Yearly', 'YTD Actual']
+        with CONTAINER:
+            grid_w3 = Grid(budget_sheet['W3'][col], key='W3', h=300)
+            c1, c2 = CONTAINER.columns(2)
+            with c1:
+                st.header("Expense Accounts")
+                Exp_W3 = Grid(exp_W3, key='exp_W3', h=400)
+                st.info('Total Balance:  {:,.2f}'.format(Exp_W3['data']['Balance'].sum()))
+            with c2:
+                st.header("Sponsorships")
+                W3_SP = Grid(sp_W3[['Customer', 'Amount']], key='sp_W3', h=400)
+                st.info('Total Balance:  {:,.2f}'.format(W3_SP['data']['Amount'].sum()))
+
+    elif project == "G&A":
+        with CONTAINER:
+            GnA = Grid(budget_sheet['GnA'], key='GnA')
+#####################################
+#####################################
+
+#####################################
+############## BUDGET ###############
+elif report == "Expenses":
+    CONTAINER.title("Modev Expenses")
+    file = CONTAINER.selectbox('',options=['Bills', 'Upwork', 'Bank Statement', 'Credit', 'Sales', 'Payables', "Loan", 'Receivables'])
     if file == "Bills":
-        with container_0:
-            col = ["Date", 'Class', 'Vendor', 'Amount', 'Status']
-            Grid(bills[col], key='key_1')
-
-    elif file == "Upwork":
-        with container_0:
-            # col = ["Date", 'Class', 'Vendor', 'Amount', 'Status']
-            Grid(upWork, key='key_2')
-
-
-
-
+        with CONTAINER:
+            col_0 = ["PROCESS DATE", 'Created Date','Class', 'Chart of account', 'Vendor', "Invoice Number",'Amount', "Payment Status", "Due Date", 'Approval Status']
+            bills = Grid( BILLS[col_0], key='Bills')
+            # st.info('Total Balance:  {:,.2f}'.format(bills['data']['Amount'].sum()))
+        if st.button('Export CSV'):
+            bills['data'].to_csv("export.csv") 
         
-    # df_template = pd.DataFrame(
-    # '',
-    # index=range(3),
-    # columns=["Class", "Account Name", "Account Type", "Balance"])
+    elif file == "Upwork":
+        with CONTAINER:
+            col = ["Date", 'Class', 'Description', "Contract",'Amount']
+            up_work = Grid(UpWORK, key='Upwork')
+            # st.info('Total Balance:  {:,.2f}'.format(up_work['data']['Amount'].sum()))
+        if st.button('Export CSV'):
+            up_work['data'].to_csv("export.csv") 
+    elif file == "Bank Statement":
+        with CONTAINER:
+            col = ["Date", "Transaction", 'Description', 'Amount']
+            BANK['Date'] = pd.to_datetime(BANK['Date'])
+            bank_stm = Grid(BANK, key='Bank',)
+            # st.info('Total Balance:  {:,.2f}'.format(bank_stm['data']['Amount'].sum()))
+        if st.button('Export CSV'):
+            bank_stm['data'].to_csv("export.csv")    
+    elif file == 'Sales':
+        with CONTAINER:
+            credit_stm = Grid(SALES, key='Sales')
+            # st.info('Total Balance:  {:,.2f}'.format(credit_stm['data']['Amount'].sum()))
+            if st.button('Export CSV'):
+                credit_stm['data'].to_csv("export.csv") 
+    elif file == 'Loan':
+        with CONTAINER:
+            credit_stm = Grid(LOAN, key='Loan')
+            # st.info('Total Balance:  {:,.2f}'.format(credit_stm['data']['Amount'].sum()))
+    elif file == 'Credit':
+        with CONTAINER:
+            credit_stm = Grid(CREDITS, key='Credit', p=False)
+            st.info('Total Balance:  {:,.2f}'.format(credit_stm['data']['Amount'].sum()))
+            if st.button('Export CSV'):
+                credit_stm['data'].to_csv("export.csv") 
+    elif file == 'Payables':
+        with CONTAINER:
+            credit_stm = Grid(PAYABLES, key='Payables')
+            # st.info('Total Balance:  {:,.2f}'.format(credit_stm['data']['Amount'].sum()))
+    elif file == 'Receivables':
+        with CONTAINER:
+            credit_stm = Grid(SALES, key='Receivables')
+            # st.info('Total Balance:  {:,.2f}'.format(credit_stm['data']['Amount'].sum()))
+    
+#####################################
+#####################################
 
-    # with st.form('example form') as f:
-    #     st.header('Example Form')
-    #     response = AgGrid(df_template, editable=True, fit_columns_on_grid_load=True)
-    #     st.form_submit_button()
+#####################################
+############## BUDGET ###############
+elif report == "Classes":
+    classes = CONTAINER.selectbox('Classes',options=['Voice22', 'W3', 'Voice21', 'VoiceNA', "G&A"])
+    if classes == "Voice22":
+        with CONTAINER:
+            Voice22 = Grid( VOICE22, key='VOICE22')
+            # st.info('Total Balance:  {:,.2f}'.format(Voice22['data']['Amount'].sum()))
+    elif classes == "W3":
+        with CONTAINER:
+            Voice22 = Grid( W3, key='W3')
+    elif classes == "Voice21":
+        with CONTAINER:
+            Voice22 = Grid( VOICE21, key='Voice21')
+    elif classes == "VoiceNA":
+        with CONTAINER:
+            Voice22 = Grid( VOICE_NA, key='VoiceNA')
+    elif classes == "G&A":
+        with CONTAINER:
+            Voice22 = Grid( GENERAL, key='G&A')
+#####################################
+#####################################
 
-    # grid = AgGrid(response['data'])
-    # # grid
-
+#####################################
+############## BUDGET ###############
+elif report == "Accounts":
+    CONTAINER.title("Recivabels Management")
+    with st.form("my_form_receivable"):
+        c20, c21, c22 = CONTAINER.columns(3)
+        date = c20.date_input("Date", datetime.datetime(2022, 1, 1))
+        c21.empty()
+        due = c22.date_input("Due Date", datetime.datetime(2022, 12, 31))
+        customer = c20.text_input('Name', 'Cash source')
+        ref = c21.text_input('Ref.', 'Invoice Number, etc...')
+        amount = c22.text_input('Amount', '0.00')
+        class_name = c20.selectbox('Class', ('Voice Summit', 'W3'))
+        c21.empty()
+        acc = c22.selectbox('Account', ('Sponsorship', 'Other'))
+        submitted = st.form_submit_button("Check")
+        if submitted:
+            st.write("Date:", date, "-  Customer:", customer,"-  Ref:", ref, "-  Class:", class_name,"-  Account:", acc, "-  Amount:", amount, "-  Due Date:", due)
+    if st.button('Comfirm and Submit'):
+        receivable["Date"] = str(date)
+        receivable["Customer"] = str(customer)
+        receivable["Ref"] = str(ref)  
+        receivable["Class"] = str(class_name) 
+        receivable["Account"] = str(acc) 
+        receivable["Amount"] = float(amount) 
+        receivable["Due"] = str(due) 
+        response = submit_receivable(receivable)
+        if response.ok:
+            st.info('Success')
+        else:
+            st.info('Failed')
+    # col = ['Date', 'Customer', 'Class', 'Amount', 'Due']
+    # rc_grid = Grid(receivables[col], key='key_123')
+#####################################
+#####################################
