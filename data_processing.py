@@ -1,6 +1,5 @@
 ######
 from lib2to3.pgen2.token import GREATER
-from tkinter import N
 import streamlit as st
 import pandas as pd 
 import datetime
