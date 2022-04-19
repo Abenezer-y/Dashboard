@@ -99,27 +99,27 @@ elif report == 'Budget Reconciliation':
             with c5:
                 c5.write(accs[0])
                 Exp_0 = Grid(budget_GnA[budget_GnA['Account']==accs[0]][cols], key=accs[0], h=400,  p=False)
-                st.info('Total Balance:  {:,.2f}'.format((Exp_0['data']['Yearly'].map(lambda Amount: float(Amount.replace(",", "")))).sum()))
+                st.info('Total Balance:  {:,.2f}'.format((Exp_0['data']['Yearly'].map(lambda Amount: float((str(Amount)).replace(",", "")))).sum()))
             with c6:
                 c6.write(accs[1])
-                budget_GnA['Yearly']= budget_GnA['Yearly'].map(lambda Amount: '{:,.2f}'.format(float(Amount.replace(",", ""))))
+                budget_GnA['Yearly']= budget_GnA['Yearly'].map(lambda Amount: '{:,.2f}'.format(float((str(Amount)).replace(",", ""))))
                 Exp_1 = Grid(budget_GnA[budget_GnA['Account']==accs[1]][cols], key=accs[1], h=400,  p=False)
-                st.info('Total Balance:  {:,.2f}'.format((Exp_1['data']['Yearly'].map(lambda Amount: float(Amount.replace(",", "")))).sum()))
+                st.info('Total Balance:  {:,.2f}'.format((Exp_1['data']['Yearly'].map(lambda Amount: float((str(Amount)).replace(",", "")))).sum()))
             with c7:
                 c7.write(accs[2])
-                budget_GnA['Yearly']= budget_GnA['Yearly'].map(lambda Amount: '{:,.2f}'.format(float(Amount.replace(",", ""))))
+                budget_GnA['Yearly']= budget_GnA['Yearly'].map(lambda Amount: '{:,.2f}'.format(float((str(Amount)).replace(",", ""))))
                 Exp_2 = Grid(budget_GnA[budget_GnA['Account']==accs[2]][cols], key=accs[2], h=400,  p=False)
-                st.info('Total Balance:  {:,.2f}'.format((Exp_2['data']['Yearly'].map(lambda Amount: float(Amount.replace(",", "")))).sum()))
+                st.info('Total Balance:  {:,.2f}'.format((Exp_2['data']['Yearly'].map(lambda Amount: float((str(Amount)).replace(",", "")))).sum()))
             with c8:
                 c8.write(accs[3])
-                budget_GnA['Yearly']= budget_GnA['Yearly'].map(lambda Amount: '{:,.2f}'.format(float(Amount.replace(",", ""))))
+                budget_GnA['Yearly']= budget_GnA['Yearly'].map(lambda Amount: '{:,.2f}'.format(float((str(Amount)).replace(",", ""))))
                 Exp_3 = Grid(budget_GnA[budget_GnA['Account']==accs[3]][cols], key=accs[3], h=400,  p=False)
-                st.info('Total Balance:  {:,.2f}'.format((Exp_3['data']['Yearly'].map(lambda Amount: float(Amount.replace(",", "")))).sum()))
+                st.info('Total Balance:  {:,.2f}'.format((Exp_3['data']['Yearly'].map(lambda Amount: float((str(Amount)).replace(",", "")))).sum()))
             with c9:
                 c9.write(accs[4])
-                budget_GnA['Yearly']= budget_GnA['Yearly'].map(lambda Amount: '{:,.2f}'.format(float(Amount.replace(",", ""))))
+                budget_GnA['Yearly']= budget_GnA['Yearly'].map(lambda Amount: '{:,.2f}'.format(float((str(Amount)).replace(",", ""))))
                 Exp_4 = Grid(budget_GnA[budget_GnA['Account']==accs[4]][cols], key=accs[4],  h=400,  p=False)
-                st.info('Total Balance:  {:,.2f}'.format((Exp_4['data']['Yearly'].map(lambda Amount: float(Amount.replace(",", "")))).sum()))
+                st.info('Total Balance:  {:,.2f}'.format((Exp_4['data']['Yearly'].map(lambda Amount: float((str(Amount)).replace(",", "")))).sum()))
 
 
 # budget_GnA
