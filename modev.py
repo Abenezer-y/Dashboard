@@ -95,7 +95,7 @@ elif report == 'Budget Reconciliation':
             accs = budget_GnA['Account'].unique()
             c5, c6, c7, c8, c9 = st.columns(5)
             cols = ["Detail", "Yearly"]
-            budget_GnA['Yearly']= budget_GnA['Yearly'].map(lambda Amount: '{:,.2f}'.format(Amount))
+            budget_GnA['Yearly']= budget_GnA['Yearly'].map(lambda Amount: '{:,.2f}'.format(float(str(Amount).replace(",", ""))))
             with c5:
                 c5.write(accs[0])
                 Exp_0 = Grid(budget_GnA[budget_GnA['Account']==accs[0]][cols], key=accs[0], h=400,  p=False)
