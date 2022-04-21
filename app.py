@@ -236,7 +236,7 @@ elif report == "Expenses":
     if file == "Bills":
         with CONTAINER:
             col_0 = ["PROCESS DATE", 'Created Date','Class', 'Chart of account', 'Vendor', "Invoice Number",'Amount', "Payment Status", "Due Date", 'Approval Status']
-            bills = Grid( BILLS[col_0], key='Bills')
+            bills = Grid( BILLS, key='Bills', p=False)
             # st.info('Total Balance:  {:,.2f}'.format(bills['data']['Amount'].sum()))
         if st.button('Export CSV'):
             bills['data'].to_csv("export.csv") 
@@ -252,7 +252,7 @@ elif report == "Expenses":
         with CONTAINER:
             col = ["Date", "Transaction", 'Description', 'Amount']
             BANK['Date'] = pd.to_datetime(BANK['Date'])
-            bank_stm = Grid(BANK, key='Bank',)
+            bank_stm = Grid(BANK, key='Bank', p=False)
             # st.info('Total Balance:  {:,.2f}'.format(bank_stm['data']['Amount'].sum()))
         if st.button('Export CSV'):
             bank_stm['data'].to_csv("export.csv")    

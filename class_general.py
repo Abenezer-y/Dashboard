@@ -2,7 +2,7 @@
 import pandas as pd
 import datetime
 from data_processing import BG_GnA, GENERAL, VOICE_NA, VOICE21, CREDITS
-from data_processing import Actual, period, sum_budget, plot_line, period_actual, Account_Balance
+from data_processing import Actual, period, sum_budget, plot_line, period_actual, Account_Balance, format_num
 ######
 
 # Plans
@@ -51,7 +51,7 @@ def Account_Balance_GnA(df):
     df['Yearly'] = df['Yearly'].map(lambda Amount: float(Amount.replace(",", "")))
 
     accounts = df['Account'].unique()
-    dict_df = {'Account': [], "Q1 TOTAL": [], "Q1 Actual": [], "Q2 TOTAL": [], "Q2 Actual": [], "Q3 TOTAL": [], "Q4 TOTAL": [], "Yearly": []}
+    dict_df = {'Account': [], "Q1 TOTAL": [], "Q1 Actual": [], "Q2 TOTAL": [], "Q2 Actual": [], "Q3 TOTAL": [], "Q4 TOTAL": [], "Yearly": [], "YTD Actual": []}
     for acc in accounts:
         dict_df['Account'].append(acc) 
         dict_df['Q1 TOTAL'].append(round(df[df['Account']==acc]['Q1 TOTAL'].sum(), 2)) 
@@ -60,11 +60,16 @@ def Account_Balance_GnA(df):
         dict_df['Q2 Actual'].append(round(Q2_DF[Q2_DF['Account']==acc]['Balance'].sum(), 2)) 
         dict_df['Q3 TOTAL'].append(round(df[df['Account']==acc]['Q3 TOTAL'].sum(), 2)) 
         dict_df['Q4 TOTAL'].append(round(df[df['Account']==acc]['Q4 TOTAL'].sum(), 2)) 
-        dict_df['Yearly'].append(round(df[df['Account']==acc]['Yearly'].sum(), 2)) 
+        dict_df['Yearly'].append(round(df[df['Account']==acc]['Yearly'].sum(), 2))
+        dict_df['YTD Actual'].append(round((Q1_DF[Q1_DF['Account']==acc]['Balance'].sum()+Q2_DF[Q2_DF['Account']==acc]['Balance'].sum()), 2))  
     acc_df = pd.DataFrame(dict_df)
     return acc_df
 
 bdg_GnA = Account_Balance_GnA(budget_gna[cols])
+
+
+
+
 def return_plan(df):
     x = df['Q1 TOTAL'].sum()
     y = x + df['Q2 TOTAL'].sum()
@@ -98,3 +103,12 @@ credit_payment = ["MOBILE PAYMENT"]
 UpWORK_PAYMENTS = ["UPWORK"]
 
 # General = ["ADDEVENT.COM", "03", "26", 24]
+
+bdg_GnA['Q1 TOTAL'] = bdg_GnA['Q1 TOTAL'].map(lambda Amount: format_num("str", Amount))
+bdg_GnA['Q1 Actual'] = bdg_GnA['Q1 Actual'].map(lambda Amount: format_num("str",Amount))
+bdg_GnA['Q2 TOTAL'] = bdg_GnA['Q2 TOTAL'].map(lambda Amount: format_num("str",Amount))
+bdg_GnA['Q2 Actual'] = bdg_GnA['Q2 Actual'].map(lambda Amount: format_num("str",Amount))
+bdg_GnA['Q3 TOTAL'] = bdg_GnA['Q3 TOTAL'].map(lambda Amount: format_num("str",Amount))
+bdg_GnA['Q4 TOTAL'] = bdg_GnA['Q4 TOTAL'].map(lambda Amount: format_num("str",Amount))
+bdg_GnA['Yearly'] = bdg_GnA['Yearly'].map(lambda Amount: format_num("str",Amount))
+bdg_GnA['YTD Actual'] = bdg_GnA['YTD Actual'].map(lambda Amount: format_num("str",Amount))

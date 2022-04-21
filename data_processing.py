@@ -1,5 +1,4 @@
 ######
-from lib2to3.pgen2.token import GREATER
 import streamlit as st
 import pandas as pd 
 import datetime
@@ -128,31 +127,46 @@ def date_formatter(date_var):
     dt_start = date_var.strftime("%m/%d/%Y")
     dt_str = datetime.strptime(dt_start, "%m/%d/%Y")
     return dt_str
+
+def format_num(convert_to, value):
+    value = (str(value)).replace(",", "")
+    if convert_to == "num":
+        return float(value)
+    elif convert_to == "str":
+        split_value = value.split('.')
+        val = float(value)
+        if len(split_value) == 1:
+            value = '{:,.0f}'.format(val)
+            return value
+        elif len(split_value) == 2:
+            if (split_value[1] == '0') | (split_value[1] == '00'):
+                value = '{:,.0f}'.format(val)
+                return value
+            else:
+                return '{:,.2f}'.format(round(val, 2)) 
 #####################################
 #####################################
 
 #####################################
 ##### Functions: Grid functions #####
+j_code = JsCode("""
+            function() {
+                    return { color: 'red'}
+               };
+            """)
+
 def Grid(df, key, h=690, p =True, jscode=None):
-    # jscode = JsCode("""
-            # function(params) {
-            #     if (parseFloat(params.value.replace(/,/g, '')) < 0) {
-            #         return {
-            #             'color': 'red',
-            #         }
-            #     }
-            # };
-            # """)
+
     gd = GridOptionsBuilder.from_dataframe(df)
-    # gd.configure_auto_height(autoHeight=True)
     gd.configure_pagination(enabled=p, paginationPageSize=20, paginationAutoPageSize=True)
-    gd.configure_default_column(groupable=True)
-    # 
+    gd.configure_default_column(groupable=True, editable=True)
     gd.configure_selection('single')
-    # gd.configure_grid_options()
     grid_option =gd.build()
-    if jscode is not None:
-        gd.configure_columns("Yearly", cellStyle=jscode)
+
+    if type(jscode) == dict:
+        gd.configure_columns("YTD Actual", cellStyle=jscode)
+
+        
     grid = AgGrid(df,  key=key,
                     gridOptions=grid_option,
                     allow_unsafe_jscode=True,
@@ -160,7 +174,8 @@ def Grid(df, key, h=690, p =True, jscode=None):
                     fit_columns_on_grid_load=True, 
                     reload_data=True,
                     data_return_mode='filtered' ,
-                    theme="material", height=h)
+                    theme="blue", 
+                    height=h)
     return grid
 #####################################
 #####################################
@@ -292,7 +307,10 @@ def cashflow(date_1=None, date_2 = None):
     
     data_dict = {}
     data_dict['Description'] = ["Opening Balance", "Cash In", "Cash Out", "Open Invoice", "Overdue Invoices", "Bank Balance", "Estimated Revenue", "Estimated Payments", "Estimated Bank Balance"]
-    data_dict['Balance'] = ['{:,.2f}'.format(ob), '{:,.2f}'.format(income), '{:,.2f}'.format(expense), '{:,.2f}'.format(excpected_inflow), '{:,.2f}'.format(overdue), '{:,.2f}'.format(balance), 0.0, 0.0, 0.0]
+    opn_string = f"For the period Begining {date_1.strftime('%B')} {date_1.strftime('%d')}, {date_1.strftime('%Y')}"
+    period_string = f"For the period Begining {date_1.strftime('%B')} {date_1.strftime('%d')}, {date_1.strftime('%Y')} and Ending {date_2.strftime('%B')} {date_2.strftime('%d')}, {date_2.strftime('%Y')}"
+    data_dict['Period'] = [opn_string, period_string, "", "", "", "", "", "", ""]
+    data_dict['Balance'] = [format_num("str", ob), format_num("str", income), format_num("str", expense), format_num("str", excpected_inflow), format_num("str", overdue), format_num("str", balance), format_num("str", 0.0), format_num("str", 0.0), format_num("str", 0.0)]
     cash_df = pd.DataFrame(data_dict)
     return cash_df
 
