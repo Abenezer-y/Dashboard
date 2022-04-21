@@ -72,7 +72,7 @@ elif report == 'Budget Reconciliation':
         
         bg_gna = Grid(bdg_GnA, key='G&A',  p=False, h=160)
         
-        st.info('Total Budget for Non Project Costs:  {:,.2f}'.format((bg_gna['data']['Yearly'].map(lambda Amount:format_num('num', Amount)).sum())))
+        st.info('Total Budget for Non Project Costs:  {:,.0f}'.format((bg_gna['data']['Yearly'].map(lambda Amount:format_num('num', Amount)).sum())))
         # Q2_DF,  Q1_DF
         with st.expander("General and Admin Costs Detail"):
             accs = budget_GnA['Account'].unique()
@@ -121,7 +121,7 @@ elif report == 'Budget Reconciliation':
             v22_COGS_df = Account_Balance(v22_COGS)
             v22_COGS_df['Balance'] = v22_COGS_df['Balance'].map(lambda Amount: format_num('str', Amount))
             V22_Exp = Grid(v22_COGS_df, key='V22_Exp', h=200, p=False)
-            st.info('Total Balance:  {:,.2f}'.format((V22_Exp['data']['Balance'].map(lambda Amount: float(Amount.replace(",","")))).sum()))
+            st.info('Total Balance:  {:,.0f}'.format((V22_Exp['data']['Balance'].map(lambda Amount: float(Amount.replace(",","")))).sum()))
         with c2:
             c2.header("Revenue")
             v22_REV['Amount'] = v22_REV['Amount'].map(lambda Amount: format_num('str', Amount))
