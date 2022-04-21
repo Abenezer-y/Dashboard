@@ -143,7 +143,7 @@ def format_num(convert_to, value):
                 value = '{:,.0f}'.format(val)
                 return value
             else:
-                return '{:,.2f}'.format(round(val, 2)) 
+                return '{:,.0f}'.format(round(val, 2)) 
 #####################################
 #####################################
 
