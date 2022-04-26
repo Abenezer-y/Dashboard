@@ -1,4 +1,4 @@
-from data_processing import  get_data
+from data_processing import  get_bills
 import pandas as pd
 import datetime
 
@@ -19,7 +19,7 @@ def class_classifier(df):
 
 
 
-bills = get_data('report_bill')
+bills = get_bills()
 bills.rename(columns={'Invoice Amount ':'Amount', 'Invoice Number': 'Description', 'PROCESS DATE': 'Date', 'Chart of account': "Account"}, inplace=True)
 
 
