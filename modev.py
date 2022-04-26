@@ -6,7 +6,8 @@ from class_voice22 import v22_fig, budget_v22, v22_REV, v22_COGS
 from class_w3 import  w3_fig, budget_w3, w3_REV, w3_COGS 
 from class_all import  budget_All, ALL_FIG
 from class_general import  gna_fig, bdg_GnA
-from data_processing import format_num, cashflow, week_range, Grid, j_code, budget_GnA, Account_Balance
+from cash import  cashflow
+from data_processing import format_num, week_range, Grid, j_code, budget_GnA, Account_Balance
 ######
 
 
@@ -16,9 +17,10 @@ headers = {'Content-Type': 'application/json', 'Access-Control-Request-Headers':
 jan_1 = datetime.datetime(2022, 1, 1, 0, 0, 0)
 today = datetime.datetime.today()
 reports = ["Cash Flow", "Budget Reconciliation",]
-periods = ["Current Week", "Previous Week", "Year to Date"]
+periods = ["Current Week", "Previous Week", "Year to Date", "Custom range"]
 projects = ["All", "Voice Summit 2022", "W3", "G&A"]
-indices = [1, 2, 3, 4, 5]
+indices = [1, 2, 3, 4, 5, 6, 7]
+indices_yt = [0, 1, 2, 3, 4, 5, 6, 7]
 income = {}
 receivable = {}
 #####################################
@@ -32,10 +34,13 @@ sideBar.title("Control Panel")
 report = sideBar.selectbox('Reports', options=reports)
 sideBar.header("Filters")
 if report == "Cash Flow":
-    project = sideBar.selectbox('Classes', options=projects)
     period = sideBar.selectbox('Period', options=periods)
+    if period == "Custom range":
+        Date_1 = sideBar.date_input("Begining Date")
+        Date_2 = sideBar.date_input("Ending Date")
 elif report == "Budget Reconciliation":
     project = sideBar.selectbox('Classes', options=projects)
+
 
 ############# CONTAINER #############
 CONTAINER = st.container()
@@ -47,16 +52,23 @@ if report == 'Cash Flow':
         CONTAINER.header('Cash Flow Summary - Current Week')
         days = week_range(1)
         cash = cashflow(days[0], days[1])
-        Cash = Grid(cash.iloc[indices], key='key_872w1', h=160, p=False)
+        Cash = Grid(cash.iloc[indices], key='key_872w1', h=205, p=False)
     elif period == 'Previous Week':
         CONTAINER.header('Cash Flow Summary - Previous Week')
         days = week_range(2)
         cash = cashflow(days[0], days[1])
-        Cash = Grid(cash.iloc[indices], key='key_87991',  h=160, p=False)
+        Cash = Grid(cash.iloc[indices], key='key_87991',  h=205, p=False)
     elif period == 'Year to Date':
         CONTAINER.header('Cash Flow Summary - Year to Date')
         cash = cashflow(jan_1, today)
-        Cash = Grid(cash, key='key_87dd991',  h=550, p=False)
+        Cash = Grid(cash.iloc[indices_yt], key='key_87dd991',  h=230, p=False)
+    elif period == 'Custom range':
+        title = f"Cash Flow Summary - {Date_1.strftime('%B')} {Date_1.strftime('%d')} , {Date_1.strftime('%Y')} to {Date_2.strftime('%B')} {Date_2.strftime('%d')}, {Date_2.strftime('%Y')}"
+        CONTAINER.header(title)
+        d1 = datetime.datetime(Date_1.year, Date_1.month, Date_1.day)
+        d2 = datetime.datetime(Date_2.year, Date_2.month, Date_2.day)
+        cash = cashflow(d1, d2)
+        Cash = Grid(cash, key='key_87drrf991',  h=260, p=False)
 #####################################
 
 # Budget Utilization 

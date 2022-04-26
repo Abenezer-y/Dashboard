@@ -55,12 +55,7 @@ MARKET = GnA_COGS.loc[lambda df: df['Account']=="Marketing"]
 LABOR = GnA_COGS.loc[lambda df: df['Account']=="Labor"] 
 ADMIN =pd.concat([ GnA_COGS.loc[lambda df: df['Account']!="Labor"] , v_NA, v21])
 
-# df['Date'] = pd.to_datetime(df['Date'])
-# COGS = COGS.sort_values(by="Date")
-# REV = REV.sort_values(by="Date")
-# MARKET = MARKET.sort_values(by="Date")
-# LABOR = LABOR.sort_values(by="Date")
-# ADMIN = ADMIN.sort_values(by="Date")
+
 
 
 COGS_All = Actual(COGS)
@@ -83,7 +78,29 @@ for col in ['Q1 Actual', "Q2 Actual", "YTD Actual",]:
 
 
 budget_All = budget[bgt_cols]
+exp  = budget_All[budget_All['CATEGORY']!= 'REVENUE']
+exp['Q1 TOTAL'] = exp['Q1 TOTAL'].map(lambda Amount: format_num("num", Amount))
+exp['Q2 TOTAL'] = exp['Q2 TOTAL'].map(lambda Amount: format_num("num", Amount))
+exp['Q3 TOTAL'] = exp['Q3 TOTAL'].map(lambda Amount: format_num("num", Amount))
+exp['Q4 TOTAL'] = exp['Q4 TOTAL'].map(lambda Amount: format_num("num", Amount))
 
+rev  = budget_All[budget_All['CATEGORY']== 'REVENUE']
+rev['Q1 TOTAL'] = rev['Q1 TOTAL'].map(lambda Amount: format_num("num", Amount))
+rev['Q2 TOTAL'] = rev['Q2 TOTAL'].map(lambda Amount: format_num("num", Amount))
+rev['Q3 TOTAL'] = rev['Q3 TOTAL'].map(lambda Amount: format_num("num", Amount))
+rev['Q4 TOTAL'] = rev['Q4 TOTAL'].map(lambda Amount: format_num("num", Amount))
+
+x_exp = exp['Q1 TOTAL'].sum()
+y_exp = x_exp + exp['Q2 TOTAL'].sum()
+z_exp = y_exp + exp['Q3 TOTAL'].sum()
+w_exp = z_exp + exp['Q4 TOTAL'].sum()
+budgeted_exp = [0, x_exp, y_exp, z_exp, w_exp]
+
+x_rev = rev['Q1 TOTAL'].sum()
+y_rev = x_rev + rev['Q2 TOTAL'].sum()
+z_rev = y_rev + rev['Q3 TOTAL'].sum()
+w_rev = z_rev + rev['Q4 TOTAL'].sum()
+budgeted_rev = [0, x_rev, y_rev, z_rev, w_rev]
 
 ALL_COST =pd.concat([GnA_COGS , v22_COGS, w3_COGS]).sort_values(by="Date")
 REV['Date'] = pd.to_datetime(REV['Date'])
@@ -116,7 +133,8 @@ print(rev_in)
 
 ALL_FIG = make_subplots(specs=[[{"secondary_y": True}]])
 # Add traces
-
+ALL_FIG.add_trace(go.Scatter(x=period, y=budgeted_rev, name="Revenue Planned"),secondary_y=False,)
+ALL_FIG.add_trace(go.Scatter(x=period, y=budgeted_exp, name="COGS Planned"),secondary_y=False,)
 ALL_FIG.add_trace(go.Scatter(x=rev_period, y=rev_in, name="Revenue Actual"),secondary_y=False,)
 ALL_FIG.add_trace(go.Scatter(x=exp_period, y=amount, name="COGS Actual"),secondary_y=False,)
 

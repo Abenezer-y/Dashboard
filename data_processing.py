@@ -48,38 +48,15 @@ def get_data(collection):
     response = requests.request("POST", findAll_url, headers=headers, data=Payload)
     return convert_to_df(response)
 
-# Function that returns cash flow dataframe
-def cashflow(bank_statement, sales, date_1=None, date_2 = None):
-    # convert to date objects
-    bank_statement['Date'] = pd.to_datetime(bank_statement['Date'])
-    sales['Date'] = pd.to_datetime(sales['Date'])
+def submit_data(collection, doc):
+    headers = {'Content-Type': 'application/json', 'Access-Control-Request-Headers': '*','api-key': 'quuKmslQouhgHNNdtya30WaRxNhXxVcvD5WJlJ0vGmsa9Z9ZccSV4eKast0OjAHb'}
+    insert_url = "https://data.mongodb-api.com/app/data-wqlxh/endpoint/data/beta/action/insertMany"
+    Payload = json.dumps({"collection": collection, "database": "Modev", "dataSource": "BiCluster", "documents": doc})
+    response = requests.request("POST", insert_url, headers=headers, data=Payload)
+    return response
 
-    # Checking given date
-    if (date_1  is None and date_2  is None):
-        bank = bank_statement
-        balance = bank['Amount'].sum()
-    else:
-        bank = bank_statement[bank_statement['Date']>=date_1]
-        bank = bank[bank['Date']<=date_2]
-        balance = bank_statement[bank_statement['Date']<=date_2]['Amount'].sum()
 
-    opening_balance =bank_statement[bank_statement['Description']=='Opening Balance']['Amount'].values[0]
-    overdue = sales[sales['Status']=='overdue']['Total'].sum()
-    open_invoice = sales[sales['Status']=='open']['Total'].sum()
-    excpected_inflow = overdue + open_invoice
-    income = bank[bank['Amount']>0.0]['Amount'].sum()
-    expense = bank[bank['Amount']<0.0]['Amount'].sum()
-    
-    data_dict = {}
-    data_dict['Description'] = ["Opening Balance", "Cash In", "Cash Out", "Open Invoice", "Overdue Invoices", "Bank Balance", "Estimated Revenue", "Estimated Payments", "Estimated Bank Balance"]
-    data_dict['Balance'] = [opening_balance, income, expense, excpected_inflow, overdue, balance, 0.0, 0.0, 0.0]
-    cash_df = pd.DataFrame(data_dict)
-    return cash_df
 
-def estimated_cashout(credit, loan, bills):
-    credit['Date'] = pd.to_datetime(credit['Date'])
-    loan['Date'] = pd.to_datetime(loan['Date'])
-    bills['Date'] = pd.to_datetime(bills['Date'])
 
 def get_bills(df):
     initial_date = datetime.datetime(2021, 11, 30, 0, 0 , 0)
@@ -193,7 +170,6 @@ def get_bills():
     initial_date = datetime.datetime(2021, 11, 30, 0, 0 , 0)
     bills = df[df['Created Date']>initial_date]
     return bills
-    # return get_data('report_bill')
 @st.cache(allow_output_mutation=True)
 def get_upWork():
     return get_data('report_quickbooks')
@@ -342,8 +318,6 @@ sponsorships = SPONSORSHIP
 gna = GENERAL
 vna = VOICE_NA
 v21 = VOICE21
-
-
 
 def per_acc(df):
     accs = df['Account'].unique()
