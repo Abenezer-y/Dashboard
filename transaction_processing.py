@@ -1,8 +1,8 @@
 import re
 from unicodedata import category
 import pandas as pd
-import spacy
-from spacy.matcher import Matcher
+# import spacy
+# from spacy.matcher import Matcher
 import numpy as np
 
 from data_processing import BANK, CREDITS, UpWORK, BILLS, SALES
