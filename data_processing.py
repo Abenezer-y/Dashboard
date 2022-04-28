@@ -11,8 +11,8 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import numpy as np
 import spacy
-from spacy.matcher import Matcher
-nlp = spacy.load("en_core_web_sm")
+# from spacy.matcher import Matcher
+# nlp = spacy.load("en_core_web_sm")
 ######
 # from db_functions import API_CONNECTION, convert_to_df, week_range, payload_constructor, df_to_dict
 
