@@ -11,7 +11,7 @@ BANK['Date'] = pd.to_datetime(BANK['Date'])
 SALES['Date'] = pd.to_datetime(SALES['Date'])
 SALES['Due date'] = pd.to_datetime(SALES['Due date'])
 
-
+SALES["Total"] = SALES["Total"].map(lambda Amount: format_num('num', Amount))
 
 
 

@@ -1,3 +1,7 @@
+from data_processing import matcher_fun, BANK
+
+bank = BANK
+
 # 'ledger'
 # ['Date', 'Name', 'Class', 'Account', 'Category', 'Method of Payment', 'Description', 'Amount']
 pattern_names = ['AMEX', 'BILL.COM', 'CAPITAL_ONE', 'HEALTH_CARE',  'LOAN', 'PAYROLL', 'SERVICE_CHARGE', 'SUBSCRIPTION','USAA']
@@ -26,7 +30,7 @@ amex_pattern = [amex_pattern_0]
 authnet_pattern = [{'LOWER': 'authnet'}, {'LOWER': 'gateway'}]
 industrious_pattern = [{'LOWER': 'industrious'}, {'LOWER': 'tech'}]
 global_pattern = [{'LOWER': 'global'}, {'LOWER': 'payments'}]
-subscription_pattern = [authnet_pattern, industrious_pattern, global_pattern])
+subscription_pattern = [authnet_pattern, industrious_pattern, global_pattern]
 
 # CAPITAL_ONE
 cap_one_pattern_0 = [{'LOWER': 'capital'}, {'LOWER': 'one'}]
@@ -37,7 +41,7 @@ loan_pattern_0 = [{'LOWER': 'comm'}, {'LOWER': 'loans'}]
 loan_pattern_1 = [{'LOWER': 'paypal'}]
 loan_pattern_2 = [{'LOWER': 'truist'}, {'LOWER': 'bank'}, {'IS_SPACE': True}, {'LOWER': 'cl'}]
 loan_pattern = [loan_pattern_0, loan_pattern_1, loan_pattern_2]
-
+# LOAN = ['LOAN', loan_pattern]
 # HEALTH_CARE
 healthcare_pattern_0 = [{'LOWER': 'united'}, {'LOWER': 'healthcar'}]
 healthcare_pattern =[healthcare_pattern_0]
@@ -56,28 +60,21 @@ service_charge_pattern = [intuit_pattern, acc_maintenace]
 
 
 
+AMEX_list = [("AMEX", amex_pattern)]
+BILL_list = [("BILL.COM", bill_pattern)]
+CAPITAL_ONE_list = [("CAPITAL_ONE", cap_one_pattern)]
+HEALTH_CARE_list = [("HEALTH_CARE", healthcare_pattern)]
+LOAN_list = [["LOAN", loan_pattern]]
+PAYROLL_list = [("PAYROLL", payroll_pattern)]
+SERVICE_CHARGE_list = [("SERVICE_CHARGE", service_charge_pattern)]
+SUBSCRIPTION_list = [("SUBSCRIPTION", subscription_pattern)]
+USAA_list = [("USAA", usaa_pattern)]
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-AMEX_list = [("AMEX"), amex_pattern]
-BILL_list = [("BILL.COM"), bill_pattern]
-CAPITAL_ONE_list = [("CAPITAL_ONE"), cap_one_pattern]
-HEALTH_CARE_list = [("HEALTH_CARE"), healthcare_pattern]
-LOAN_list = [("LOAN"), loan_pattern]
-PAYROLL_list = [("PAYROLL"), payroll_pattern]
-SERVICE_CHARGE_list = [("SERVICE_CHARGE"), service_charge_pattern]
-SUBSCRIPTION_list = [("SUBSCRIPTION"), subscription_pattern]
-USAA_list = [("USAA"), usaa_pattern]
+loan_df = matcher_fun(matcher_list = LOAN_list, data = bank, account="Loan")
+loan_df['Vendor'] = ["Loan Builder" for i in range(loan_df.shape[0])] 
+loan_df['Invoice Date'] = [ _ for _ in loan_df['Date']] 
+loan_df['Due Date'] = [ _ for _ in loan_df['Date']]  
+loan_df['Process Date'] = [ _ for _ in loan_df['Date']] 
+loan_df['Status'] = ["paid" for i in range(loan_df.shape[0])] 

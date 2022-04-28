@@ -10,6 +10,9 @@ import time
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import numpy as np
+import spacy
+from spacy.matcher import Matcher
+nlp = spacy.load("en_core_web_sm")
 ######
 # from db_functions import API_CONNECTION, convert_to_df, week_range, payload_constructor, df_to_dict
 
@@ -127,9 +130,7 @@ def format_num(convert_to, value):
 #####################################
 ##### Functions: Grid functions #####
 j_code = JsCode("""
-            function() {
-                    return { color: 'red'}
-               };
+            color: 'red'
             """)
 
 def Grid(df, key, h=690, p =True, jscode=None):
@@ -172,7 +173,7 @@ def get_bills():
     return bills
 @st.cache(allow_output_mutation=True)
 def get_upWork():
-    return get_data('report_quickbooks')
+    return get_data('report_upwork')
 @st.cache(allow_output_mutation=True)
 def get_credit():
     return get_data('report_amex')
@@ -393,3 +394,34 @@ def period_actual(df, rev, cogs, period):
     bgt_cols = ["Account", "Q1 TOTAL", "Q1 Actual", "Q2 TOTAL", "Q2 Actual", "Q3 TOTAL", "Q4 TOTAL", "Yearly", "YTD Actual"]
     return df[bgt_cols]
 
+bank = BANK
+def matcher_fun(matcher_list, data, col='Description', account="Miscellaneous", project="G&A", category="Expense", method="Cash"):
+    matcher = Matcher(nlp.vocab, validate=True)
+    text_list = [_ for _ in data[col]]
+
+    for pattern in matcher_list:
+        matcher.add(pattern[0], pattern[1])
+
+    matched_transactions = []
+    indices = []
+
+    for text in text_list:
+        doc = nlp(text)
+        for match_id, start, end in matcher(doc):
+            matched_transactions.append(doc.text)
+
+    for desc in matched_transactions:
+        index = data.loc[lambda df: df[col].str.match(desc)].index
+        for i in index:
+            if i in indices:
+                pass
+            else:
+                indices.append(i)
+    df = data.iloc[indices]
+
+    df["Class"] = [project for i in range(df.shape[0])]
+    df["Category"] = [category for i in range(df.shape[0])]
+    df["Account"] = [account for i in range(df.shape[0])]
+    df["Method"] = [method for i in range(df.shape[0])]
+
+    return df

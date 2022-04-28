@@ -1,4 +1,18 @@
 Date,Ref ID,Type,Description,Agency,Freelancer,Team,Account Name,PO,Amount,Amount in local currency,Currency,Balance
+"Apr 25, 2022",472203423,Processing Fee,Payment processing fee for Ref ID 472203420,,,,Peter Erickson,,-62.81,,,0.00
+"Apr 25, 2022",472203420,Payment,Paid from Visa 2153,,,,Peter Erickson,,2156.48,,,62.81
+"Apr 25, 2022",472203390,Processing Fee,Payment processing fee for Ref ID 472203389,,,,Peter Erickson,,-37.45,,,-2093.67
+"Apr 25, 2022",472203389,Payment,Paid from Visa 2153,,,,Peter Erickson,,1285.78,,,-2056.22
+"Apr 25, 2022",472032322,Hourly,Invoice for 04/18/2022-04/24/2022 - 10:00 hrs @ $30.00/hr,,Louis Anthony Ng,Modev,Peter Erickson,,-300.00,,,-3342.00
+"Apr 25, 2022",472020092,Hourly,Invoice for 04/18/2022-04/24/2022 - 40:00 hrs @ $12.00/hr,,Hira Arshad,Modev,Peter Erickson,,-480.00,,,-3042.00
+"Apr 25, 2022",472015688,Hourly,Invoice for 04/18/2022-04/24/2022 - 40:00 hrs @ $8.25/hr,,Zahid Saleem,Modev,Peter Erickson,,-330.00,,,-2562.00
+"Apr 25, 2022",471868790,Hourly,Invoice for 04/18/2022-04/24/2022 - 0:20 hrs @ $30.00/hr,,Jessica Harter,Modev,Peter Erickson,,-10.00,,,-2232.00
+"Apr 25, 2022",471793780,Hourly,Invoice for 04/18/2022-04/24/2022 - 20:00 hrs @ $50.00/hr,,Adam Mitchell,Modev,Peter Erickson,,-1000.00,,,-2222.00
+"Apr 25, 2022",471745325,Hourly,Invoice for 04/18/2022-04/24/2022 - 4:10 hrs @ $50.00/hr,,Rachel Keller,Modev,Peter Erickson,,-208.33,,,-1222.00
+"Apr 25, 2022",471697755,Hourly,Invoice for 04/18/2022-04/24/2022 - 3:00 hrs @ $10.00/hr,Entelyglobal Solutions LLC,Vema Reddy,Modev,Peter Erickson,,-30.00,,,-1013.67
+"Apr 25, 2022",471634109,Hourly,Invoice for 04/18/2022-04/24/2022 - 13:00 hrs @ $45.00/hr,,Marc Dahan,Modev,Peter Erickson,,-585.00,,,-983.67
+"Apr 25, 2022",471554000,Hourly,Invoice for 04/18/2022-04/24/2022 - 7:20 hrs @ $50.00/hr,On Demand Webmasters,Rob Marriott,Modev,Peter Erickson,,-366.67,,,-398.67
+"Apr 25, 2022",471524377,Hourly,Invoice for 04/18/2022-04/24/2022 - 2:00 hrs @ $16.00/hr,,Keyla Zermeno,Modev,Peter Erickson,,-32.00,,,-32.00
 "Apr 18, 2022",470266310,Processing Fee,Payment processing fee for Ref ID 470266309,,,,Peter Erickson,,-104.95,,,0.00
 "Apr 18, 2022",470266309,Payment,Paid from American Express 4005,,,,Peter Erickson,,3603.42,,,104.95
 "Apr 18, 2022",470140183,Hourly,Invoice for 04/11/2022-04/17/2022 - 5:10 hrs @ $30.00/hr,,Louis Anthony Ng,Modev,Peter Erickson,,-155.00,,,-3498.47
@@ -38,3 +52,152 @@ Date,Ref ID,Type,Description,Agency,Freelancer,Team,Account Name,PO,Amount,Amoun
 "Apr 4, 2022",465997157,Hourly,Invoice for 03/28/2022-04/03/2022 - 6:40 hrs @ $50.00/hr,,Rachel Keller,Modev,Peter Erickson,,-333.33,,,-1086.66
 "Apr 4, 2022",465940192,Hourly,Invoice for 03/28/2022-04/03/2022 - 3:20 hrs @ $10.00/hr,Entelyglobal Solutions LLC,Vema Reddy,Modev,Peter Erickson,,-33.33,,,-753.33
 "Apr 4, 2022",465872722,Hourly,Invoice for 03/28/2022-04/03/2022 - 16:00 hrs @ $45.00/hr,,Marc Dahan,Modev,Peter Erickson,,-720.00,,,-720.00
+"Mar 28, 2022",464479837,Processing Fee,Payment processing fee for Ref ID 464479836,,,,Peter Erickson,,-110.51,,,0.00
+"Mar 28, 2022",464479836,Payment,Paid from American Express 4005,,,,Peter Erickson,,3794.17,,,110.51
+"Mar 28, 2022",464380933,Hourly,Invoice for 03/21/2022-03/27/2022 - 21:30 hrs @ $30.00/hr,,Riard Rexhepi,Modev,Peter Erickson,,-645.00,,,-3683.66
+"Mar 28, 2022",464317905,Hourly,Invoice for 03/21/2022-03/27/2022 - 14:30 hrs @ $22.00/hr,,Anna Boiko,Modev,Peter Erickson,,-319.00,,,-3038.66
+"Mar 28, 2022",464175348,Hourly,Invoice for 03/21/2022-03/27/2022 - 20:00 hrs @ $30.00/hr,,Jessica Harter,Modev,Peter Erickson,,-600.00,,,-2719.66
+"Mar 28, 2022",464095234,Hourly,Invoice for 03/21/2022-03/27/2022 - 20:00 hrs @ $50.00/hr,,Adam Mitchell,Modev,Peter Erickson,,-1000.00,,,-2119.66
+"Mar 28, 2022",464028511,Hourly,Invoice for 03/21/2022-03/27/2022 - 6:40 hrs @ $50.00/hr,,Rachel Keller,Modev,Peter Erickson,,-333.33,,,-1119.66
+"Mar 28, 2022",463975657,Hourly,Invoice for 03/21/2022-03/27/2022 - 3:30 hrs @ $10.00/hr,Entelyglobal Solutions LLC,Vema Reddy,Modev,Peter Erickson,,-35.00,,,-786.33
+"Mar 28, 2022",463904579,Hourly,Invoice for 03/21/2022-03/27/2022 - 9:00 hrs @ $45.00/hr,,Marc Dahan,Modev,Peter Erickson,,-405.00,,,-751.33
+"Mar 28, 2022",463812659,Hourly,Invoice for 03/21/2022-03/27/2022 - 1:10 hrs @ $50.00/hr,On Demand Webmasters,Rob Marriott,Modev,Peter Erickson,,-58.33,,,-346.33
+"Mar 28, 2022",463775922,Hourly,Invoice for 03/21/2022-03/27/2022 - 18:00 hrs @ $16.00/hr,,Keyla Zermeno,Modev,Peter Erickson,,-288.00,,,-288.00
+"Mar 21, 2022",462501337,Processing Fee,Payment processing fee for Ref ID 462501336,,,,Peter Erickson,,-93.44,,,0.00
+"Mar 21, 2022",462501336,Payment,Paid from American Express 4005,,,,Peter Erickson,,3208.11,,,93.44
+"Mar 21, 2022",462406793,Hourly,Invoice for 03/14/2022-03/20/2022 - 17:30 hrs @ $22.00/hr,,Anna Boiko,Modev,Peter Erickson,,-385.00,,,-3114.67
+"Mar 21, 2022",462259733,Hourly,Invoice for 03/14/2022-03/20/2022 - 21:20 hrs @ $30.00/hr,,Jessica Harter,Modev,Peter Erickson,,-640.00,,,-2729.67
+"Mar 21, 2022",462164139,Hourly,Invoice for 03/14/2022-03/20/2022 - 19:30 hrs @ $50.00/hr,,Adam Mitchell,Modev,Peter Erickson,,-975.00,,,-2089.67
+"Mar 21, 2022",462094758,Hourly,Invoice for 03/14/2022-03/20/2022 - 7:40 hrs @ $50.00/hr,,Rachel Keller,Modev,Peter Erickson,,-383.33,,,-1114.67
+"Mar 21, 2022",462037185,Hourly,Invoice for 03/14/2022-03/20/2022 - 2:40 hrs @ $10.00/hr,Entelyglobal Solutions LLC,Vema Reddy,Modev,Peter Erickson,,-26.67,,,-731.34
+"Mar 21, 2022",461970013,Hourly,Invoice for 03/14/2022-03/20/2022 - 9:00 hrs @ $45.00/hr,,Marc Dahan,Modev,Peter Erickson,,-405.00,,,-704.67
+"Mar 21, 2022",461885288,Hourly,Invoice for 03/14/2022-03/20/2022 - 1:50 hrs @ $50.00/hr,On Demand Webmasters,Rob Marriott,Modev,Peter Erickson,,-91.67,,,-299.67
+"Mar 21, 2022",461846530,Hourly,Invoice for 03/14/2022-03/20/2022 - 13:00 hrs @ $16.00/hr,,Keyla Zermeno,Modev,Peter Erickson,,-208.00,,,-208.00
+"Mar 18, 2022",461445472,Payment,Paid from American Express 4005,,,,Peter Erickson,,49.99,,,0.00
+"Mar 18, 2022",461445471,Membership Fee,Monthly Plan Renewal Charges,,,,Peter Erickson,,-49.99,,,-49.99
+"Mar 14, 2022",460570863,Processing Fee,Payment processing fee for Ref ID 460570862,,,,Peter Erickson,,-82.32,,,0.00
+"Mar 14, 2022",460570862,Payment,Paid from American Express 4005,,,,Peter Erickson,,2826.31,,,82.32
+"Mar 14, 2022",460320046,Hourly,Invoice for 03/07/2022-03/13/2022 - 21:40 hrs @ $30.00/hr,,Jessica Harter,Modev,Peter Erickson,,-650.00,,,-2743.99
+"Mar 14, 2022",460226148,Hourly,Invoice for 03/07/2022-03/13/2022 - 20:00 hrs @ $50.00/hr,,Adam Mitchell,Modev,Peter Erickson,,-1000.00,,,-2093.99
+"Mar 14, 2022",460164174,Hourly,Invoice for 03/07/2022-03/13/2022 - 7:10 hrs @ $50.00/hr,,Rachel Keller,Modev,Peter Erickson,,-358.33,,,-1093.99
+"Mar 14, 2022",460100296,Hourly,Invoice for 03/07/2022-03/13/2022 - 2:30 hrs @ $10.00/hr,Entelyglobal Solutions LLC,Vema Reddy,Modev,Peter Erickson,,-25.00,,,-735.66
+"Mar 14, 2022",460022614,Hourly,Invoice for 03/07/2022-03/13/2022 - 8:00 hrs @ $45.00/hr,,Marc Dahan,Modev,Peter Erickson,,-360.00,,,-710.66
+"Mar 14, 2022",459938984,Hourly,Invoice for 03/07/2022-03/13/2022 - 4:40 hrs @ $50.00/hr,On Demand Webmasters,Rob Marriott,Modev,Peter Erickson,,-233.33,,,-350.66
+"Mar 14, 2022",459897632,Hourly,Invoice for 03/07/2022-03/13/2022 - 7:20 hrs @ $16.00/hr,,Keyla Zermeno,Modev,Peter Erickson,,-117.33,,,-117.33
+"Mar 7, 2022",458624788,Processing Fee,Payment processing fee for Ref ID 458624787,,,,Peter Erickson,,-79.90,,,0.00
+"Mar 7, 2022",458624787,Payment,Paid from American Express 4005,,,,Peter Erickson,,2743.24,,,79.90
+"Mar 7, 2022",458397219,Hourly,Invoice for 02/28/2022-03/06/2022 - 15:10 hrs @ $30.00/hr,,Jessica Harter,Modev,Peter Erickson,,-455.00,,,-2663.34
+"Mar 7, 2022",458293141,Hourly,Invoice for 02/28/2022-03/06/2022 - 16:00 hrs @ $50.00/hr,,Adam Mitchell,Modev,Peter Erickson,,-800.00,,,-2208.34
+"Mar 7, 2022",458223442,Hourly,Invoice for 02/28/2022-03/06/2022 - 5:20 hrs @ $50.00/hr,,Rachel Keller,Modev,Peter Erickson,,-266.67,,,-1408.34
+"Mar 7, 2022",458161419,Hourly,Invoice for 02/28/2022-03/06/2022 - 2:00 hrs @ $10.00/hr,Entelyglobal Solutions LLC,Vema Reddy,Modev,Peter Erickson,,-20.00,,,-1141.67
+"Mar 7, 2022",458083448,Hourly,Invoice for 02/28/2022-03/06/2022 - 22:00 hrs @ $45.00/hr,,Marc Dahan,Modev,Peter Erickson,,-990.00,,,-1121.67
+"Mar 7, 2022",457994944,Hourly,Invoice for 02/28/2022-03/06/2022 - 1:50 hrs @ $50.00/hr,On Demand Webmasters,Rob Marriott,Modev,Peter Erickson,,-91.67,,,-131.67
+"Mar 7, 2022",457950824,Hourly,Invoice for 02/28/2022-03/06/2022 - 2:30 hrs @ $16.00/hr,,Keyla Zermeno,Modev,Peter Erickson,,-40.00,,,-40.00
+"Feb 28, 2022",456591269,Processing Fee,Payment processing fee for Ref ID 456591268,,,,Peter Erickson,,-21.45,,,0.00
+"Feb 28, 2022",456591268,Payment,Paid from Visa 2153,,,,Peter Erickson,,736.45,,,21.45
+"Feb 28, 2022",456591201,Processing Fee,Payment processing fee for Ref ID 456591200,,,,Peter Erickson,,-55.60,,,-715.00
+"Feb 28, 2022",456591200,Payment,Paid from Visa 2153,,,,Peter Erickson,,1908.93,,,-659.40
+"Feb 28, 2022",456383049,Hourly,Invoice for 02/21/2022-02/27/2022 - 15:50 hrs @ $30.00/hr,,Jessica Harter,Modev,Peter Erickson,,-475.00,,,-2568.33
+"Feb 28, 2022",456276250,Hourly,Invoice for 02/21/2022-02/27/2022 - 19:00 hrs @ $50.00/hr,,Adam Mitchell,Modev,Peter Erickson,,-950.00,,,-2093.33
+"Feb 28, 2022",456203058,Hourly,Invoice for 02/21/2022-02/27/2022 - 8:10 hrs @ $50.00/hr,,Rachel Keller,Modev,Peter Erickson,,-408.33,,,-1143.33
+"Feb 28, 2022",456140796,Hourly,Invoice for 02/21/2022-02/27/2022 - 2:00 hrs @ $10.00/hr,Entelyglobal Solutions LLC,Vema Reddy,Modev,Peter Erickson,,-20.00,,,-735.00
+"Feb 28, 2022",456054766,Hourly,Invoice for 02/21/2022-02/27/2022 - 9:00 hrs @ $45.00/hr,,Marc Dahan,Modev,Peter Erickson,,-405.00,,,-715.00
+"Feb 28, 2022",455958142,Hourly,Invoice for 02/21/2022-02/27/2022 - 4:20 hrs @ $50.00/hr,On Demand Webmasters,Rob Marriott,Modev,Peter Erickson,,-216.67,,,-310.00
+"Feb 28, 2022",455920237,Hourly,Invoice for 02/21/2022-02/27/2022 - 5:50 hrs @ $16.00/hr,,Keyla Zermeno,Modev,Peter Erickson,,-93.33,,,-93.33
+"Feb 21, 2022",454613882,Processing Fee,Payment processing fee for Ref ID 454613880,,,,Peter Erickson,,-76.25,,,0.00
+"Feb 21, 2022",454613880,Payment,Paid from American Express 4005,,,,Peter Erickson,,2617.91,,,76.25
+"Feb 21, 2022",454430070,Hourly,Invoice for 02/14/2022-02/20/2022 - 13:50 hrs @ $30.00/hr,,Jessica Harter,Modev,Peter Erickson,,-415.00,,,-2541.66
+"Feb 21, 2022",454315204,Hourly,Invoice for 02/14/2022-02/20/2022 - 20:00 hrs @ $50.00/hr,,Adam Mitchell,Modev,Peter Erickson,,-1000.00,,,-2126.66
+"Feb 21, 2022",454239125,Hourly,Invoice for 02/14/2022-02/20/2022 - 10:10 hrs @ $50.00/hr,,Rachel Keller,Modev,Peter Erickson,,-508.33,,,-1126.66
+"Feb 21, 2022",454170618,Hourly,Invoice for 02/14/2022-02/20/2022 - 2:00 hrs @ $10.00/hr,Entelyglobal Solutions LLC,Vema Reddy,Modev,Peter Erickson,,-20.00,,,-618.33
+"Feb 21, 2022",454081920,Hourly,Invoice for 02/14/2022-02/20/2022 - 11:00 hrs @ $45.00/hr,,Marc Dahan,Modev,Peter Erickson,,-495.00,,,-598.33
+"Feb 21, 2022",453990780,Hourly,Invoice for 02/14/2022-02/20/2022 - 1:00 hrs @ $50.00/hr,On Demand Webmasters,Rob Marriott,Modev,Peter Erickson,,-50.00,,,-103.33
+"Feb 21, 2022",453950237,Hourly,Invoice for 02/14/2022-02/20/2022 - 3:20 hrs @ $16.00/hr,,Keyla Zermeno,Modev,Peter Erickson,,-53.33,,,-53.33
+"Feb 18, 2022",453624660,Fixed Price,Invoice for Market Research Analyst: Milestone 7 - VOICE Report Voices.com,,Saeed Ahmad,Modev,Peter Erickson,,-500.00,,,0.00
+"Feb 18, 2022",453624659,Payment,Paid from escrow for invoice 453624660,,,,Peter Erickson,,500.00,,,500.00
+"Feb 18, 2022",453624624,Processing Fee,Payment processing fee for Ref ID 453624623,,,,Peter Erickson,,-15.00,,,0.00
+"Feb 18, 2022",453624623,Payment,Paid from American Express 4005 to escrow for funding request 453624622,,,,Peter Erickson,,515.00,,,15.00
+"Feb 18, 2022",453624622,Fixed Price,Funding request for Market Research Analyst: Milestone 7 - VOICE Report Voices.com,,,,Peter Erickson,,-500.00,,,-500.00
+"Feb 18, 2022",453624537,Fixed Price,Invoice for Market Research Analyst: Milestone 6 - VOICE Report Speech Morphing,,Saeed Ahmad,Modev,Peter Erickson,,-500.00,,,0.00
+"Feb 18, 2022",453624536,Payment,Paid from escrow for invoice 453624537,,,,Peter Erickson,,500.00,,,500.00
+"Feb 18, 2022",453624493,Processing Fee,Payment processing fee for Ref ID 453624492,,,,Peter Erickson,,-15.00,,,0.00
+"Feb 18, 2022",453624492,Payment,Paid from American Express 4005 to escrow for funding request 453624490,,,,Peter Erickson,,515.00,,,15.00
+"Feb 18, 2022",453624490,Fixed Price,Funding request for Market Research Analyst: Milestone 6 - VOICE Report Speech Morphing,,,,Peter Erickson,,-500.00,,,-500.00
+"Feb 18, 2022",453572954,Payment,Paid from American Express 4005,,,,Peter Erickson,,49.99,,,0.00
+"Feb 18, 2022",453572953,Membership Fee,Monthly Plan Renewal Charges,,,,Peter Erickson,,-49.99,,,-49.99
+"Feb 14, 2022",452687564,Processing Fee,Payment processing fee for Ref ID 452687563,,,,Peter Erickson,,-79.58,,,0.00
+"Feb 14, 2022",452687563,Payment,Paid from American Express 4005,,,,Peter Erickson,,2732.25,,,79.58
+"Feb 14, 2022",452512658,Hourly,Invoice for 02/07/2022-02/13/2022 - 13:00 hrs @ $30.00/hr,,Jessica Harter,Modev,Peter Erickson,,-390.00,,,-2652.67
+"Feb 14, 2022",452374359,Hourly,Invoice for 02/07/2022-02/13/2022 - 19:30 hrs @ $50.00/hr,,Adam Mitchell,Modev,Peter Erickson,,-975.00,,,-2262.67
+"Feb 14, 2022",452300074,Hourly,Invoice for 02/07/2022-02/13/2022 - 14:20 hrs @ $50.00/hr,,Rachel Keller,Modev,Peter Erickson,,-716.67,,,-1287.67
+"Feb 14, 2022",452222715,Hourly,Invoice for 02/07/2022-02/13/2022 - 2:00 hrs @ $10.00/hr,Entelyglobal Solutions LLC,Vema Reddy,Modev,Peter Erickson,,-20.00,,,-571.00
+"Feb 14, 2022",452144287,Hourly,Invoice for 02/07/2022-02/13/2022 - 10:00 hrs @ $45.00/hr,,Marc Dahan,Modev,Peter Erickson,,-450.00,,,-551.00
+"Feb 14, 2022",452044126,Hourly,Invoice for 02/07/2022-02/13/2022 - 1:10 hrs @ $50.00/hr,On Demand Webmasters,Rob Marriott,Modev,Peter Erickson,,-58.33,,,-101.00
+"Feb 14, 2022",452002859,Hourly,Invoice for 02/07/2022-02/13/2022 - 2:40 hrs @ $16.00/hr,,Keyla Zermeno,Modev,Peter Erickson,,-42.67,,,-42.67
+"Feb 11, 2022",451593758,Processing Fee,Payment processing fee for Ref ID 451593757,,,,Peter Erickson,,-15.00,,,0.00
+"Feb 11, 2022",451593757,Payment,Paid from American Express 4005,,,,Peter Erickson,,515.00,,,15.00
+"Feb 11, 2022",451552956,Bonus,CES event venue sourcing,,Jane Maine,Modev,Peter Erickson,,-500.00,,,-500.00
+"Feb 7, 2022",450767681,Processing Fee,Payment processing fee for Ref ID 450767679,,,,Peter Erickson,,-63.47,,,0.00
+"Feb 7, 2022",450767679,Payment,Paid from American Express 4005,,,,Peter Erickson,,2179.14,,,63.47
+"Feb 7, 2022",450638454,Hourly,Invoice for 01/31/2022-02/06/2022 - 9:30 hrs @ $30.00/hr,,Jessica Harter,Modev,Peter Erickson,,-285.00,,,-2115.67
+"Feb 7, 2022",450492188,Hourly,Invoice for 01/31/2022-02/06/2022 - 16:00 hrs @ $50.00/hr,,Adam Mitchell,Modev,Peter Erickson,,-800.00,,,-1830.67
+"Feb 7, 2022",450408093,Hourly,Invoice for 01/31/2022-02/06/2022 - 5:00 hrs @ $50.00/hr,,Rachel Keller,Modev,Peter Erickson,,-250.00,,,-1030.67
+"Feb 7, 2022",450330714,Hourly,Invoice for 01/31/2022-02/06/2022 - 2:00 hrs @ $10.00/hr,Entelyglobal Solutions LLC,Vema Reddy,Modev,Peter Erickson,,-20.00,,,-780.67
+"Feb 7, 2022",450246348,Hourly,Invoice for 01/31/2022-02/06/2022 - 10:00 hrs @ $45.00/hr,,Marc Dahan,Modev,Peter Erickson,,-450.00,,,-760.67
+"Feb 7, 2022",450245446,Hourly,Invoice for 01/31/2022-02/06/2022 - 4:00 hrs @ $55.00/hr,,Sheena Graham,Modev,Peter Erickson,,-220.00,,,-310.67
+"Feb 7, 2022",450098601,Hourly,Invoice for 01/31/2022-02/06/2022 - 5:40 hrs @ $16.00/hr,,Keyla Zermeno,Modev,Peter Erickson,,-90.67,,,-90.67
+"Feb 1, 2022",449230297,Fixed Price,Invoice for Build an Award Winning Pitch Deck: Milestone 3 - Final Amendments,,Ro Bhardwaj,Modev,Peter Erickson,,-500.00,,,0.00
+"Feb 1, 2022",449230296,Payment,Paid from escrow for invoice 449230297,,,,Peter Erickson,,500.00,,,500.00
+"Jan 31, 2022",448826405,Processing Fee,Payment processing fee for Ref ID 448826404,,,,Peter Erickson,,-66.49,,,0.00
+"Jan 31, 2022",448826404,Payment,Paid from American Express 4005,,,,Peter Erickson,,2282.83,,,66.49
+"Jan 31, 2022",448757483,Hourly,Invoice for 01/24/2022-01/30/2022 - 0:40 hrs @ $30.00/hr,,Jessica Harter,Modev,Peter Erickson,,-20.00,,,-2216.34
+"Jan 31, 2022",448573487,Hourly,Invoice for 01/24/2022-01/30/2022 - 19:00 hrs @ $50.00/hr,,Adam Mitchell,Modev,Peter Erickson,,-950.00,,,-2196.34
+"Jan 31, 2022",448483889,Hourly,Invoice for 01/24/2022-01/30/2022 - 2:50 hrs @ $50.00/hr,,Rachel Keller,Modev,Peter Erickson,,-141.67,,,-1246.34
+"Jan 31, 2022",448404986,Hourly,Invoice for 01/24/2022-01/30/2022 - 4:20 hrs @ $10.00/hr,Entelyglobal Solutions LLC,Vema Reddy,Modev,Peter Erickson,,-43.33,,,-1104.67
+"Jan 31, 2022",448315285,Hourly,Invoice for 01/24/2022-01/30/2022 - 14:40 hrs @ $55.00/hr,,Sheena Graham,Modev,Peter Erickson,,-806.67,,,-1061.34
+"Jan 31, 2022",448209312,Hourly,Invoice for 01/24/2022-01/30/2022 - 3:20 hrs @ $50.00/hr,On Demand Webmasters,Rob Marriott,Modev,Peter Erickson,,-166.67,,,-254.67
+"Jan 31, 2022",448170747,Hourly,Invoice for 01/24/2022-01/30/2022 - 5:30 hrs @ $16.00/hr,,Keyla Zermeno,Modev,Peter Erickson,,-88.00,,,-88.00
+"Jan 24, 2022",447169299,Refund,Refund for Processing Fee (Ref #416994848),,,,Peter Erickson,,21.75,,,0.00
+"Jan 24, 2022",447169298,Credit,Refund to American Express 4005 for credit ref 447169297,,,,Peter Erickson,,-746.75,,,-21.75
+"Jan 24, 2022",447169297,Fixed Price,Credit for ended contract Whova Event App Management and Acount Management: Milestone 2 - Whova Integration and Account Management,,,,Peter Erickson,,725.00,,,725.00
+"Jan 24, 2022",446957803,Processing Fee,Payment processing fee for Ref ID 446957800,,,,Peter Erickson,,-51.07,,,0.00
+"Jan 24, 2022",446957800,Payment,Paid from American Express 4005,,,,Peter Erickson,,1753.41,,,51.07
+"Jan 24, 2022",446723860,Hourly,Invoice for 01/17/2022-01/23/2022 - 8:30 hrs @ $50.00/hr,,Adam Mitchell,Modev,Peter Erickson,,-425.00,,,-1702.34
+"Jan 24, 2022",446627232,Hourly,Invoice for 01/17/2022-01/23/2022 - 6:30 hrs @ $50.00/hr,,Rachel Keller,Modev,Peter Erickson,,-325.00,,,-1277.34
+"Jan 24, 2022",446545883,Hourly,Invoice for 01/17/2022-01/23/2022 - 2:30 hrs @ $10.00/hr,Entelyglobal Solutions LLC,Vema Reddy,Modev,Peter Erickson,,-25.00,,,-952.34
+"Jan 24, 2022",446453172,Hourly,Invoice for 01/17/2022-01/23/2022 - 7:00 hrs @ $45.00/hr,,Marc Dahan,Modev,Peter Erickson,,-315.00,,,-927.34
+"Jan 24, 2022",446452521,Hourly,Invoice for 01/17/2022-01/23/2022 - 9:00 hrs @ $55.00/hr,,Sheena Graham,Modev,Peter Erickson,,-495.00,,,-612.34
+"Jan 24, 2022",446347198,Hourly,Invoice for 01/17/2022-01/23/2022 - 1:20 hrs @ $50.00/hr,On Demand Webmasters,Rob Marriott,Modev,Peter Erickson,,-66.67,,,-117.34
+"Jan 24, 2022",446303842,Hourly,Invoice for 01/17/2022-01/23/2022 - 3:10 hrs @ $16.00/hr,,Keyla Zermeno,Modev,Peter Erickson,,-50.67,,,-50.67
+"Jan 18, 2022",445387978,Payment,Paid from American Express 4005,,,,Peter Erickson,,49.99,,,0.00
+"Jan 18, 2022",445387977,Membership Fee,Monthly Plan Renewal Charges,,,,Peter Erickson,,-49.99,,,-49.99
+"Jan 17, 2022",445113612,Processing Fee,Payment processing fee for Ref ID 445113611,,,,Peter Erickson,,-40.05,,,0.00
+"Jan 17, 2022",445113611,Payment,Paid from American Express 4005,,,,Peter Erickson,,1375.04,,,40.05
+"Jan 17, 2022",444805523,Hourly,Invoice for 01/10/2022-01/16/2022 - 3:20 hrs @ $50.00/hr,,Rachel Keller,Modev,Peter Erickson,,-166.67,,,-1334.99
+"Jan 17, 2022",444718320,Hourly,Invoice for 01/10/2022-01/16/2022 - 1:50 hrs @ $10.00/hr,Entelyglobal Solutions LLC,Vema Reddy,Modev,Peter Erickson,,-18.33,,,-1168.32
+"Jan 17, 2022",444627409,Hourly,Invoice for 01/10/2022-01/16/2022 - 15:20 hrs @ $55.00/hr,,Sheena Graham,Modev,Peter Erickson,,-843.33,,,-1149.99
+"Jan 17, 2022",444515343,Hourly,Invoice for 01/10/2022-01/16/2022 - 2:40 hrs @ $50.00/hr,On Demand Webmasters,Rob Marriott,Modev,Peter Erickson,,-133.33,,,-306.66
+"Jan 17, 2022",444469400,Hourly,Invoice for 01/10/2022-01/16/2022 - 10:50 hrs @ $16.00/hr,,Keyla Zermeno,Modev,Peter Erickson,,-173.33,,,-173.33
+"Jan 10, 2022",443332528,Processing Fee,Payment processing fee for Ref ID 443332524,,,,Peter Erickson,,-50.01,,,0.00
+"Jan 10, 2022",443332524,Payment,Paid from American Express 4005,,,,Peter Erickson,,1717.01,,,50.01
+"Jan 10, 2022",443151215,Hourly,Invoice for 01/03/2022-01/09/2022 - 0:30 hrs @ $50.00/hr,,Adam Mitchell,Modev,Peter Erickson,,-25.00,,,-1667.00
+"Jan 10, 2022",443050267,Hourly,Invoice for 01/03/2022-01/09/2022 - 3:50 hrs @ $50.00/hr,,Rachel Keller,Modev,Peter Erickson,,-191.67,,,-1642.00
+"Jan 10, 2022",442968012,Hourly,Invoice for 01/03/2022-01/09/2022 - 1:20 hrs @ $10.00/hr,Entelyglobal Solutions LLC,Vema Reddy,Modev,Peter Erickson,,-13.33,,,-1450.33
+"Jan 10, 2022",442877299,Hourly,Invoice for 01/03/2022-01/09/2022 - 6:00 hrs @ $45.00/hr,,Marc Dahan,Modev,Peter Erickson,,-270.00,,,-1437.00
+"Jan 10, 2022",442876775,Hourly,Invoice for 01/03/2022-01/09/2022 - 18:00 hrs @ $55.00/hr,,Sheena Graham,Modev,Peter Erickson,,-990.00,,,-1167.00
+"Jan 10, 2022",442768939,Hourly,Invoice for 01/03/2022-01/09/2022 - 1:50 hrs @ $50.00/hr,On Demand Webmasters,Rob Marriott,Modev,Peter Erickson,,-91.67,,,-177.00
+"Jan 10, 2022",442722066,Hourly,Invoice for 01/03/2022-01/09/2022 - 5:20 hrs @ $16.00/hr,,Keyla Zermeno,Modev,Peter Erickson,,-85.33,,,-85.33
+"Jan 5, 2022",442167311,Fixed Price,Invoice for Seeking Social Media Rock Star for VOICE Talks: Milestone 3 - Manage social media for VOICE Talks,,Stephanie Hidalgo,Modev,Peter Erickson,,-500.00,,,0.00
+"Jan 5, 2022",442167309,Payment,Paid from escrow for invoice 442167311,,,,Peter Erickson,,500.00,,,500.00
+"Jan 5, 2022",442167288,Processing Fee,Payment processing fee for Ref ID 442167287,,,,Peter Erickson,,-15.00,,,0.00
+"Jan 5, 2022",442167287,Payment,Paid from American Express 4005 to escrow for funding request 442167286,,,,Peter Erickson,,515.00,,,15.00
+"Jan 5, 2022",442167286,Fixed Price,Funding request for Seeking Social Media Rock Star for VOICE Talks: Milestone 3 - Manage social media for VOICE Talks,,,,Peter Erickson,,-500.00,,,-500.00
+"Jan 5, 2022",442167277,Fixed Price,Invoice for Seeking Social Media Rock Star for VOICE Talks: Milestone 2 - Put together social media calendar and begin to develop creative for October / November posts,,Stephanie Hidalgo,Modev,Peter Erickson,,-500.00,,,0.00
+"Jan 5, 2022",442167276,Payment,Paid from escrow for invoice 442167277,,,,Peter Erickson,,500.00,,,500.00
+"Jan 3, 2022",441623789,Processing Fee,Payment processing fee for Ref ID 441623786,,,,Peter Erickson,,-20.10,,,0.00
+"Jan 3, 2022",441623786,Payment,Paid from American Express 4005,,,,Peter Erickson,,690.11,,,20.10
+"Jan 3, 2022",441490645,Hourly,Invoice for 12/27/2021-01/02/2022 - 0:20 hrs @ $50.00/hr,,Adam Mitchell,Modev,Peter Erickson,,-16.67,,,-670.01
+"Jan 3, 2022",441394232,Hourly,Invoice for 12/27/2021-01/02/2022 - 1:30 hrs @ $50.00/hr,,Rachel Keller,Modev,Peter Erickson,,-75.00,,,-653.34
+"Jan 3, 2022",441314825,Hourly,Invoice for 12/27/2021-01/02/2022 - 2:00 hrs @ $10.00/hr,Entelyglobal Solutions LLC,Vema Reddy,Modev,Peter Erickson,,-20.00,,,-578.34
+"Jan 3, 2022",441236826,Hourly,Invoice for 12/27/2021-01/02/2022 - 6:40 hrs @ $55.00/hr,,Sheena Graham,Modev,Peter Erickson,,-366.67,,,-558.34
+"Jan 3, 2022",441135844,Hourly,Invoice for 12/27/2021-01/02/2022 - 3:50 hrs @ $50.00/hr,On Demand Webmasters,Rob Marriott,Modev,Peter Erickson,,-191.67,,,-191.67

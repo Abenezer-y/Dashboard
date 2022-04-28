@@ -8,6 +8,7 @@ from class_all import  budget_All, ALL_FIG
 from class_general import  gna_fig, bdg_GnA
 from cash import  cashflow
 from data_processing import format_num, week_range, Grid, j_code, budget_GnA, Account_Balance
+# from processor_bankstatment import loan_df
 ######
 
 
@@ -52,6 +53,7 @@ if report == 'Cash Flow':
         CONTAINER.header('Cash Flow Summary - Current Week')
         days = week_range(1)
         cash = cashflow(days[0], days[1])
+        
         Cash = Grid(cash.iloc[indices], key='key_872w1', h=205, p=False)
     elif period == 'Previous Week':
         CONTAINER.header('Cash Flow Summary - Previous Week')
