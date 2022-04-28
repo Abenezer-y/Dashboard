@@ -10,7 +10,7 @@ import time
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import numpy as np
-import spacy
+# import spacy
 # from spacy.matcher import Matcher
 # nlp = spacy.load("en_core_web_sm")
 ######
