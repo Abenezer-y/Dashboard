@@ -57,8 +57,10 @@ if report == 'Cash Flow':
         Cash = Grid(cash.iloc[indices], key='key_872w1', h=208, p=False)
         col1, col2 = st.columns(2)
         with col1:
+            st.write('Receivable')
             Cash = Grid(receivables(days[1]), key='key_87dd2w1', h=205, p=False)
         with col2:
+            st.write('Payables')
             Cash = Grid(payables(days[1]), key='key_872scw1', h=205, p=False)
     elif period == 'Previous Week':
         CONTAINER.header('Cash Flow Summary - Previous Week')
@@ -67,8 +69,10 @@ if report == 'Cash Flow':
         Cash = Grid(cash.iloc[indices], key='key_87991',  h=208, p=False)
         col1, col2 = st.columns(2)
         with col1:
+            st.write('Receivable')
             Cash = Grid(receivables(days[1]), key='key4_87ddn2w1', h=205, p=False)
         with col2:
+            st.write('Payables')
             Cash = Grid(payables(days[1]), key='ke4y_87nf2scw1', h=205, p=False)
     elif period == 'Year to Date':
         CONTAINER.header('Cash Flow Summary - Year to Date')
@@ -76,8 +80,10 @@ if report == 'Cash Flow':
         Cash = Grid(cash.iloc[indices_yt], key='key_87dd991',  h=230, p=False)
         col1, col2 = st.columns(2)
         with col1:
+            st.write('Receivable')
             Cash = Grid(receivables(today), key='key_w87ddcn2w1', h=205, p=False)
         with col2:
+            st.write('Payables')
             Cash = Grid(payables(today), key='key_487naf2scw1', h=205, p=False)
     elif period == 'Custom range':
         title = f"Cash Flow Summary - {Date_1.strftime('%B')} {Date_1.strftime('%d')} , {Date_1.strftime('%Y')} to {Date_2.strftime('%B')} {Date_2.strftime('%d')}, {Date_2.strftime('%Y')}"
@@ -88,8 +94,10 @@ if report == 'Cash Flow':
         Cash = Grid(cash, key='key_87drrf991',  h=260, p=False)
         col1, col2 = st.columns(2)
         with col1:
+            st.write('Receivable')
             Cash = Grid(receivables(d2), key='key_87sddcn2w1', h=205, p=False)
         with col2:
+            st.write('Payables')
             Cash = Grid(payables(d2), key='key_87qnaf2scw1', h=205, p=False)
 #####################################
 
