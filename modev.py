@@ -94,7 +94,7 @@ if report == 'Cash Flow':
         Cash = Grid(cash, key='key_87drrf991',  h=260, p=False)
         col1, col2 = st.columns(2)
         with col1:
-            st.write('Receivable')
+            st.write('Receivables')
             Cash = Grid(receivables(d2), key='key_87sddcn2w1', h=205, p=False)
         with col2:
             st.write('Payables')
