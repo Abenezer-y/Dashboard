@@ -1,4 +1,17 @@
 Date,Ref ID,Type,Description,Agency,Freelancer,Team,Account Name,PO,Amount,Amount in local currency,Currency,Balance
+"May 2, 2022",474452401,Payment,Paid from ACH 9946,,,,Peter Erickson,,1995.50,,,0.00
+"May 2, 2022",474303522,Processing Fee,Payment processing fee for Ref ID 474303518,,,,Peter Erickson,,-23.25,,,-1995.50
+"May 2, 2022",474303518,Payment,Paid from Visa 2153,,,,Peter Erickson,,798.25,,,-1972.25
+"May 2, 2022",474098112,Hourly,Invoice for 04/25/2022-05/01/2022 - 8:50 hrs @ $30.00/hr,,Louis Anthony Ng,Modev,Peter Erickson,,-265.00,,,-2770.50
+"May 2, 2022",474091587,Hourly,Invoice for 04/25/2022-05/01/2022 - 38:00 hrs @ $8.25/hr,,Zahid Saleem,Modev,Peter Erickson,,-313.50,,,-2505.50
+"May 2, 2022",474083078,Hourly,Invoice for 04/25/2022-05/01/2022 - 39:50 hrs @ $12.00/hr,,Hira Arshad,Modev,Peter Erickson,,-478.00,,,-2192.00
+"May 2, 2022",473902319,Hourly,Invoice for 04/25/2022-05/01/2022 - 11:30 hrs @ $30.00/hr,,Jessica Harter,Modev,Peter Erickson,,-345.00,,,-1714.00
+"May 2, 2022",473831690,Hourly,Invoice for 04/25/2022-05/01/2022 - 4:00 hrs @ $50.00/hr,,Adam Mitchell,Modev,Peter Erickson,,-200.00,,,-1369.00
+"May 2, 2022",473762268,Hourly,Invoice for 04/25/2022-05/01/2022 - 4:10 hrs @ $50.00/hr,,Rachel Keller,Modev,Peter Erickson,,-208.33,,,-1169.00
+"May 2, 2022",473702265,Hourly,Invoice for 04/25/2022-05/01/2022 - 2:10 hrs @ $10.00/hr,Entelyglobal Solutions LLC,Vema Reddy,Modev,Peter Erickson,,-21.67,,,-960.67
+"May 2, 2022",473632298,Hourly,Invoice for 04/25/2022-05/01/2022 - 10:00 hrs @ $45.00/hr,,Marc Dahan,Modev,Peter Erickson,,-450.00,,,-939.00
+"May 2, 2022",473529598,Hourly,Invoice for 04/25/2022-05/01/2022 - 5:50 hrs @ $50.00/hr,On Demand Webmasters,Rob Marriott,Modev,Peter Erickson,,-291.67,,,-489.00
+"May 2, 2022",473492019,Hourly,Invoice for 04/25/2022-05/01/2022 - 12:20 hrs @ $16.00/hr,,Keyla Zermeno,Modev,Peter Erickson,,-197.33,,,-197.33
 "Apr 25, 2022",472203423,Processing Fee,Payment processing fee for Ref ID 472203420,,,,Peter Erickson,,-62.81,,,0.00
 "Apr 25, 2022",472203420,Payment,Paid from Visa 2153,,,,Peter Erickson,,2156.48,,,62.81
 "Apr 25, 2022",472203390,Processing Fee,Payment processing fee for Ref ID 472203389,,,,Peter Erickson,,-37.45,,,-2093.67

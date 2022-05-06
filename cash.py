@@ -28,11 +28,13 @@ payables['Due Date'] = pd.to_datetime(payables['Due Date'])
 
 
 # excpected_payment = 0.0
-def estimated_cashout(credit, loan, bills):
-    credit['Date'] = pd.to_datetime(credit['Date'])
-    loan['Date'] = pd.to_datetime(loan['Date'])
-    bills['Date'] = pd.to_datetime(bills['Date'])
+def estimated_cashout(date_2=None):
+    excpected_payment = payables[(payables["Payment Status"] == "Scheduled")&(payables["Due Date"] <=date_2)]
+    return excpected_payment[['Vendor', "Amount", 'Due Date']]
 
+def estimated_cashin(date_2=None):
+    excpected_inflow = open[open['Due date'] <= date_2]
+    return excpected_inflow[['Customer', "Total", 'Due date']]
 
 #### Functions: Data Processing #####
 def cashflow(date_1=None, date_2 = None):

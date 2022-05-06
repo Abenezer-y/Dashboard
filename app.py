@@ -10,7 +10,7 @@ import plotly.graph_objects as go
 import time
 import plotly.express as px
 from data_processing import format, week_range, convert_to_df, Grid, get_data, date_formatter, budget, budget_w3, budget_v22, budget_GnA, get_bills, Account_Balance
-from data_processing import cashflow, get_upWork, get_credit, get_bank, get_data, get_sales, get_budget, get_accounts, get_loan, get_receivables, get_payables, get_sponsorship, get_payroll, get_general, get_voice21, get_voice22, get_voiceNA, get_w3
+from data_processing import cashflow, get_upWork, get_credit, get_bank, get_data, get_sales, get_ledger, get_accounts, get_loan, get_receivables, get_payables, get_sponsorship, get_payroll, get_general, get_voice21, get_voice22, get_voiceNA, get_w3
 #####################################
 
 #####################################
@@ -20,7 +20,8 @@ UpWORK = get_upWork()
 CREDITS = get_credit()
 BANK = get_bank()
 SALES = get_sales()
-
+LEDGER = get_ledger()
+ledger_col = [ _ for _ in LEDGER.columns][1:]
 # BUDGET = get_budget()
 
 # ACCOUNTS = get_accounts()
@@ -111,6 +112,10 @@ today = datetime.datetime.today()
 
 #####################################
 ############## SIDEBAR ##############
+reports = ["Cash Flow", "Budget Reconciliation", "Expenses", "Classes", "Accounts"]
+periods = ["Current Week", "Previous Week", "Year to Date"]
+projects = ["All", "Voice Summit 2022", "W3", "G&A"]
+
 sideBar = st.sidebar
 sideBar.title("Control Panel")
 report = sideBar.selectbox('Reports', options=reports)
@@ -232,7 +237,7 @@ elif report == "Budget Reconciliation":
 ############## BUDGET ###############
 elif report == "Expenses":
     CONTAINER.title("Modev Expenses")
-    file = CONTAINER.selectbox('',options=['Bills', 'Upwork', 'Bank Statement', 'Credit', 'Sales', 'Payables', "Loan", 'Receivables'])
+    file = CONTAINER.selectbox('',options=['Bills', 'Upwork', 'Bank Statement', 'Credit', 'Sales', 'Payables', "Loan", 'Receivables', 'Ledger'])
     if file == "Bills":
         with CONTAINER:
             col_0 = ["PROCESS DATE", 'Created Date','Class', 'Chart of account', 'Vendor', "Invoice Number",'Amount', "Payment Status", "Due Date", 'Approval Status']
@@ -279,6 +284,10 @@ elif report == "Expenses":
     elif file == 'Receivables':
         with CONTAINER:
             credit_stm = Grid(SALES, key='Receivables')
+            # st.info('Total Balance:  {:,.2f}'.format(credit_stm['data']['Amount'].sum()))
+    elif file == 'Ledger':
+        with CONTAINER:
+            credit_stm = Grid(LEDGER[ledger_col], key='Ledger', p=False)
             # st.info('Total Balance:  {:,.2f}'.format(credit_stm['data']['Amount'].sum()))
     
 #####################################

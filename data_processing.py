@@ -231,6 +231,9 @@ def get_sponsorship():
 @st.cache(allow_output_mutation=True)
 def get_accounts():
     return get_data('accounts')
+@st.cache(allow_output_mutation=True)
+def get_ledger():
+    return get_data('modev_ledger_2022')
 #####################################
 #####################################
 

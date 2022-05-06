@@ -6,9 +6,9 @@ from class_voice22 import v22_fig, budget_v22, v22_REV, v22_COGS
 from class_w3 import  w3_fig, budget_w3, w3_REV, w3_COGS 
 from class_all import  budget_All, ALL_FIG
 from class_general import  gna_fig, bdg_GnA
-from cash import  cashflow
+from cash import  cashflow, estimated_cashin, estimated_cashout
 from data_processing import format_num, week_range, Grid, j_code, budget_GnA, Account_Balance
-# from processor_bankstatment import loan_df
+from reports import cash_flow, payables, over_due
 ######
 
 
@@ -49,28 +49,48 @@ CONTAINER = st.container()
 # CASHFLOW 
 if report == 'Cash Flow':
     CONTAINER.title("MODEV Cash Flow Report")
+    
     if period == 'Current Week':
         CONTAINER.header('Cash Flow Summary - Current Week')
         days = week_range(1)
-        cash = cashflow(days[0], days[1])
-        
-        Cash = Grid(cash.iloc[indices], key='key_872w1', h=205, p=False)
+        cash = cash_flow(days[0], days[1])
+        Cash = Grid(cash.iloc[indices], key='key_872w1', h=208, p=False)
+        col1, col2 = st.columns(2)
+        with col1:
+            Cash = Grid(over_due(), key='key_87dd2w1', h=205, p=False)
+        with col2:
+            Cash = Grid(payables(days[1]), key='key_872scw1', h=205, p=False)
     elif period == 'Previous Week':
         CONTAINER.header('Cash Flow Summary - Previous Week')
         days = week_range(2)
-        cash = cashflow(days[0], days[1])
-        Cash = Grid(cash.iloc[indices], key='key_87991',  h=205, p=False)
+        cash = cash_flow(days[0], days[1])
+        Cash = Grid(cash.iloc[indices], key='key_87991',  h=208, p=False)
+        col1, col2 = st.columns(2)
+        with col1:
+            Cash = Grid(over_due(), key='key4_87ddn2w1', h=205, p=False)
+        with col2:
+            Cash = Grid(payables(days[1]), key='ke4y_87nf2scw1', h=205, p=False)
     elif period == 'Year to Date':
         CONTAINER.header('Cash Flow Summary - Year to Date')
-        cash = cashflow(jan_1, today)
+        cash = cash_flow()
         Cash = Grid(cash.iloc[indices_yt], key='key_87dd991',  h=230, p=False)
+        col1, col2 = st.columns(2)
+        with col1:
+            Cash = Grid(over_due(), key='key_w87ddcn2w1', h=205, p=False)
+        with col2:
+            Cash = Grid(payables(today), key='key_487naf2scw1', h=205, p=False)
     elif period == 'Custom range':
         title = f"Cash Flow Summary - {Date_1.strftime('%B')} {Date_1.strftime('%d')} , {Date_1.strftime('%Y')} to {Date_2.strftime('%B')} {Date_2.strftime('%d')}, {Date_2.strftime('%Y')}"
         CONTAINER.header(title)
         d1 = datetime.datetime(Date_1.year, Date_1.month, Date_1.day)
         d2 = datetime.datetime(Date_2.year, Date_2.month, Date_2.day)
-        cash = cashflow(d1, d2)
+        cash = cash_flow(d1, d2)
         Cash = Grid(cash, key='key_87drrf991',  h=260, p=False)
+        col1, col2 = st.columns(2)
+        with col1:
+            Cash = Grid(over_due(), key='key_87sddcn2w1', h=205, p=False)
+        with col2:
+            Cash = Grid(payables(d2), key='key_87qnaf2scw1', h=205, p=False)
 #####################################
 
 # Budget Utilization 
