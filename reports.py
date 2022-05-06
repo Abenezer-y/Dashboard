@@ -34,11 +34,11 @@ def cash_flow(date_1=None, date_2=None):
 
     open_invoices = invoices['amount'].sum()
     overdue_invoices = invoices[invoices['status']=='overdue']['amount'].sum()
-    estimated_inflow = overdue_invoices + invoices[invoices['due_date']<=d_2]['amount'].sum()
+    estimated_inflow = invoices[invoices['due_date']<=d_2]['amount'].sum()
     estimated_payments = payables['amount'].sum()
     est_balance = bank_balance + open_invoices + estimated_payments
 
-    deiscription = ['Opening Balance', 'Cash In', 'Cash Out', 'Bank Balance', 'Open Invoices', 'Overdue Invoices', 'Estimated Payment', 'Estimated Cash', 'Estimated Bank Balance'] 
+    deiscription = ['Opening Balance', 'Cash In', 'Cash Out', 'Bank Balance', 'Open Invoices', 'Overdue Invoices', 'Estimated Payment', 'Estimated Cash In', 'Estimated Bank Balance'] 
     d2_str = f"{d_2.strftime('%B')} {d_2.strftime('%d')}, {d_2.strftime('%Y')}"
     period = ['as of January 1, 2022', '', '', 'As of ' + d2_str, '', '', 'Ending ' + d2_str, 'Ending ' + d2_str, 'Ending ' + d2_str]
     amount = [opening_balance, inflow, outflow, bank_balance, open_invoices, overdue_invoices, estimated_payments, estimated_inflow, est_balance]
