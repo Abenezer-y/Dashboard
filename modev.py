@@ -8,7 +8,7 @@ from class_all import  budget_All, ALL_FIG
 from class_general import  gna_fig, bdg_GnA
 from cash import  cashflow, estimated_cashin, estimated_cashout
 from data_processing import format_num, week_range, Grid, j_code, budget_GnA, Account_Balance
-from reports import cash_flow, payables, over_due
+from reports import cash_flow, payables, receivables
 ######
 
 
@@ -21,7 +21,7 @@ reports = ["Cash Flow", "Budget Reconciliation",]
 periods = ["Current Week", "Previous Week", "Year to Date", "Custom range"]
 projects = ["All", "Voice Summit 2022", "W3", "G&A"]
 indices = [1, 2, 3, 4, 5, 6, 7]
-indices_yt = [0, 1, 2, 3, 4, 5, 6, 7]
+indices_yt = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 income = {}
 receivable = {}
 #####################################
@@ -57,7 +57,7 @@ if report == 'Cash Flow':
         Cash = Grid(cash.iloc[indices], key='key_872w1', h=208, p=False)
         col1, col2 = st.columns(2)
         with col1:
-            Cash = Grid(over_due(), key='key_87dd2w1', h=205, p=False)
+            Cash = Grid(receivables(days[1]), key='key_87dd2w1', h=205, p=False)
         with col2:
             Cash = Grid(payables(days[1]), key='key_872scw1', h=205, p=False)
     elif period == 'Previous Week':
@@ -67,7 +67,7 @@ if report == 'Cash Flow':
         Cash = Grid(cash.iloc[indices], key='key_87991',  h=208, p=False)
         col1, col2 = st.columns(2)
         with col1:
-            Cash = Grid(over_due(), key='key4_87ddn2w1', h=205, p=False)
+            Cash = Grid(receivables(days[1]), key='key4_87ddn2w1', h=205, p=False)
         with col2:
             Cash = Grid(payables(days[1]), key='ke4y_87nf2scw1', h=205, p=False)
     elif period == 'Year to Date':
@@ -76,7 +76,7 @@ if report == 'Cash Flow':
         Cash = Grid(cash.iloc[indices_yt], key='key_87dd991',  h=230, p=False)
         col1, col2 = st.columns(2)
         with col1:
-            Cash = Grid(over_due(), key='key_w87ddcn2w1', h=205, p=False)
+            Cash = Grid(receivables(today), key='key_w87ddcn2w1', h=205, p=False)
         with col2:
             Cash = Grid(payables(today), key='key_487naf2scw1', h=205, p=False)
     elif period == 'Custom range':
@@ -88,7 +88,7 @@ if report == 'Cash Flow':
         Cash = Grid(cash, key='key_87drrf991',  h=260, p=False)
         col1, col2 = st.columns(2)
         with col1:
-            Cash = Grid(over_due(), key='key_87sddcn2w1', h=205, p=False)
+            Cash = Grid(receivables(d2), key='key_87sddcn2w1', h=205, p=False)
         with col2:
             Cash = Grid(payables(d2), key='key_87qnaf2scw1', h=205, p=False)
 #####################################

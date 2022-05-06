@@ -48,10 +48,11 @@ def cash_flow(date_1=None, date_2=None):
     return pd.DataFrame(cash_dict)
 
 
-def over_due():
-    overdue_invoices = sales[sales['status']=='overdue'][['vendor','amount', 'due_date']]
-    overdue_invoices['due_date'] = overdue_invoices['due_date'].map(lambda date: str(date).split(' ')[0])
-    return overdue_invoices.rename(columns={'vendor': 'Customer', 'amount': 'Amount', 'due_date': 'Due'})
+def receivables(d_2=today):
+    invoices = sales[(sales['status']=='open')|(sales['status']=='overdue')][['vendor','amount', 'due_date']]
+    invoices = invoices[invoices['due_date']<=d_2]
+    invoices['due_date'] = invoices['due_date'].map(lambda date: str(date).split(' ')[0])
+    return invoices.rename(columns={'vendor': 'Customer', 'amount': 'Amount', 'due_date': 'Due'})
 
 def payables(d_2):
     payables = bills[bills['due_date']<=d_2]
